@@ -1,0 +1,654 @@
+﻿{% load static %}
+{% load app_filter %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="Find easily a doctor and book online an appointment">
+    <meta name="author" content="Ansonika">
+    <title>FINDOCTOR - Find easily a doctor and book online an appointment</title>
+
+    <!-- Favicons ENABLE-->
+    <!--	<link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon">-->
+    <!--	<link rel="apple-touch-icon" type="image/x-icon" href="img/apple-touch-icon-57x57-precomposed.png">-->
+    <!--	<link rel="apple-touch-icon" type="image/x-icon" sizes="72x72" href="img/apple-touch-icon-72x72-precomposed.png">-->
+    <!--	<link rel="apple-touch-icon" type="image/x-icon" sizes="114x114" href="img/apple-touch-icon-114x114-precomposed.png">-->
+    <!--	<link rel="apple-touch-icon" type="image/x-icon" sizes="144x144" href="img/apple-touch-icon-144x144-precomposed.png">-->
+
+
+    <!-- GOOGLE WEB FONT -->
+    <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700,800" rel="stylesheet">
+
+    <!-- BASE CSS -->
+    <link href="{% static 'css/bootstrap.css' %}" rel="stylesheet">
+    <link href="{% static 'css/style.css' %}" rel="stylesheet">
+    <link href="{% static 'css/menu.css' %}" rel="stylesheet">
+    <link href="{% static 'css/vendors.css' %}" rel="stylesheet">
+    <link href="{% static 'css/icon_fonts/css/all_icons_min.css' %}" rel="stylesheet">
+
+    <!-- SPECIFIC CSS -->
+    <link href="{% static 'css/date_picker.css' %}" rel="stylesheet">
+
+    <!-- YOUR CUSTOM CSS -->
+    <link href="{% static 'css/custom.css' %}" rel="stylesheet">
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD_gBZfqnrdLR-pzcTnpxa46JTULSFUvq4"
+            type="text/javascript"></script>
+
+    <script>
+                window.onload = function() {
+                <!--    function azaza(){-->
+                <!--$('.modal').hide();-->
+                <!--}-->
+                $(document).on('show.bs.modal', '.modal', function () {
+                  $(this).appendTo('body');
+                });
+                }
+
+
+
+
+    </script>
+    <style>
+                .but {
+                    background: white;
+                    border: none;
+                    color: #e74e84;
+                    cursor: pointer;
+                }
+
+                #info-table tr td{
+                    width: 50%;
+                    vertical-align: bottom;
+                    padding: 10px;
+                }
+                #info-table tr :first-child{
+                    text-align: left;
+                    padding: 0;
+                    /* margin: 10px; */
+
+                    /* border: 1px solid red; */
+                }
+                #info-table tr :last-child{
+                    padding: 0;
+                    /* margin: 10px; */
+                    /* text-align: left; */
+
+                    /* border: 1px solid red; */
+                }
+
+
+    </style>
+</head>
+
+
+<body>
+
+<div id="preloader" class="Fixed">
+    <div data-loader="circle-side"></div>
+</div>
+<!-- /Preload-->
+
+<div id="page">
+    <header class="static">
+        <a href="#menu" class="btn_mobile">
+            <div class="hamburger hamburger--spin" id="hamburger">
+                <div class="hamburger-box">
+                    <div class="hamburger-inner"></div>
+                </div>
+            </div>
+        </a>
+        <!-- /btn_mobile-->
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-3 col-6">
+                    <div id="logo">
+                        <!--                        ENABLE-->
+                        <!--                        <a href="index.html" title="Findoctor"><img src="img/logo.png" data-retina="true" alt=""-->
+                        <!--                                                                    width="163" height="36"></a>-->
+                    </div>
+                </div>
+                <div class="col-lg-9 col-7">
+                    <ul id="top_access">
+                        <li><a href="{{request.scheme}}://{{request.META.HTTP_HOST}}/login/"><i class="pe-7s-user"></i></a>
+                        </li>
+                        <li><a href="{{request.scheme}}://{{request.META.HTTP_HOST}}/register/"><i
+                                class="pe-7s-add-user"></i></a></li>
+                    </ul>
+                    <nav id="menu" class="main-menu">
+                        <ul>
+                            <li>
+                                <span><a
+                                        href="{{request.scheme}}://{{request.META.HTTP_HOST}}/doctor/">Medici</a></span>
+                            </li>
+                            <li>
+                                <span><a href="{{request.scheme}}://{{request.META.HTTP_HOST}}/serviciu/clinici/">Clinici</a></span>
+                            </li>
+                            <li>
+                                <span><a href="{{request.scheme}}://{{request.META.HTTP_HOST}}/serviciu/diagnostic/">Centre de diagnostic</a></span>
+                            </li>
+                            <li>
+                                <span><a href="{{request.scheme}}://{{request.META.HTTP_HOST}}/serviciu/laboratoare/">Laboratoare</a></span>
+                            </li>
+                            <li>
+                                <span><a href="{{request.scheme}}://{{request.META.HTTP_HOST}}/serviciu/stomatologii/">Stomatologii</a></span>
+                            </li>
+                        </ul>
+                    </nav>
+                    <!-- /main-menu -->
+                </div>
+            </div>
+        </div>
+        <!-- /container -->
+    </header>
+    <!-- /header -->
+    <style>
+	#tog.del {
+  display: none;
+}
+#mog.del {
+  display: none;
+}
+
+
+    </style>
+    <main class="theia-exception">
+        <div id="results">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-6">
+                        <!--                        <div class="main-menu"">-->
+                        <!--                       						<ul>-->
+                        <!--							<li>-->
+                        <!--								<span><a href="#0">Medici</a></span>-->
+                        <!--							</li>-->
+                        <!--							<li>-->
+                        <!--								<span><a href="#0">Clinici</a></span>-->
+                        <!--                            </li>-->
+                        <!--                            <li>-->
+                        <!--								<span><a href="#0">Centre de diagnostic</a></span>-->
+                        <!--							</li>-->
+                        <!--                            <li>-->
+                        <!--								<span><a href="#0">Laboratoare</a></span>-->
+                        <!--							</li>-->
+                        <!--                            <li>-->
+                        <!--								<span><a href="#0">Stomatologii</a></span>-->
+                        <!--							</li>-->
+                        <!--						</ul>-->
+                        <!--                             </div>-->
+                    </div>
+                    <div class="col-md-6">
+                        <form action="{% url 'choose_city' %}" method="POST">
+                            <select id="service_type" name="service_type" onchange="selectSearchType()">
+                                {% for serv in service_type %}
+                                <option value="{{ serv }}">{{ serv }}</option>
+                                {% endfor %}
+
+                            </select>
+                            <select name="service_doc" id="mog">
+                                {% for serv in service_doc %}
+                                <option value="{{ serv }}">{{ serv }}</option>
+                                {% endfor %}
+
+                            </select>
+                            <select name="service_serv" id="tog" class="del">
+                                {% for serv in service_serv %}
+                                <option value="{{ serv }}">{{ serv }}</option>
+                                {% endfor %}
+                            </select>
+                            <select name="location">
+                                {% for loc in location %}
+                                <option value="{{ loc }}">{{ loc }}</option>
+                                {% endfor %}
+                            </select>
+                            <button>Search</button>
+
+                        </form>
+                        <!--						<div class="search_bar_list">-->
+                        <!--							<input type="text" class="form-control" placeholder="Ex. Specialist, Name, Doctor...">-->
+                        <!--							<input type="submit" value="Search">-->
+                        <!--						</div>-->
+                    </div>
+                </div>
+                <!-- /row -->
+            </div>
+            <!-- /container -->
+        </div>
+        <!-- /results -->
+
+        <div class="filters_listing">
+            <div class="container">
+                <ul class="clearfix">
+                    <li>
+                        <h6>Sortează</h6>
+                        <div class="switch-field">
+                            <input type="radio" id="all" name="type_patient" value="all" checked>
+                            <label for="all">rating</label>
+                            <input type="radio" id="doctors" name="type_patient" value="doctors">
+                            <label for="doctors">preț</label>
+                            <input type="radio" id="clinics" name="type_patient" value="clinics">
+                            <label for="clinics">recenzii</label>
+                            <input type="radio" id="experience" name="type_patient" value="clinics">
+                            <label for="experience">experiență</label>
+                        </div>
+                    </li>
+                    <!--                    <li>-->
+                    <!--                        <h6>Layout</h6>-->
+                    <!--                        <div class="layout_view">-->
+                    <!--                            <a href="grid-list.html"><i class="icon-th"></i></a>-->
+                    <!--                            <a href="#0" class="active"><i class="icon-th-list"></i></a>-->
+                    <!--                            <a href="list-map.html"><i class="icon-map-1"></i></a>-->
+                    <!--                        </div>-->
+                    <!--                    </li>-->
+                    <li style="padding-right:85px;">
+                        <h6>Filtru</h6>
+                        <select name="orderby" class="selectbox">
+                            <option value="Closest">Toți</option>
+                            <option value="Closest">Pentru Copii</option>
+                            <option value="Best rated">Vizita acasa</option>
+                            <option value="Men">Online</option>
+                        </select>
+                    </li>
+                </ul>
+            </div>
+            <!-- /container -->
+        </div>
+        <!-- /filters -->
+
+        <div class="container margin_60_35">
+            <div class="row">
+                <div class="col-md-8">
+                    {% for obj in page_obj %}
+                    <div class="strip_list wow fadeIn" style="padding: 10px;">
+
+                        <div class="row p-4">
+                            <div class="col-md-3 p-0 m-0">
+                                <figure style="border-radius: 0px;height: 161px;width: 161px;position: inherit;top: 0;left: 0;">
+                                    <a href="{{request.scheme}}://{{request.META.HTTP_HOST}}/doctor/detail-page/{{obj.id}}">
+                                        {% if obj.cover %}
+                                        <img src="{{ obj.cover.url }}" alt=""
+                                             style="height: 100%; width: 100%;border-radius: none;">
+                                        {% endif %}
+                                    </a>
+
+                                </figure>
+
+                            </div>
+
+                            <div class="col-md-5">
+                                <!-- <a href="#0" class="wish_bt"></a> -->
+                                <!--NEED to be link
+                                <h3><a href="{{request.scheme}}://{{request.META.HTTP_HOST}}/doctor/detail-page/{{obj.id}}" >{{obj.first_name}} {{obj.last_name}}</a></h3>-->
+                                <h3>{{obj.first_name}} {{obj.last_name}}</h3>
+                                {% for dom in obj.domain.all %}
+                                <small>{{ dom.domain }}</small>
+                                {% endfor %}
+                                <!-- <h3>{{request}}</h3> -->
+                                <p>CATEGORIA {{obj.study_category}}</p>
+                                <p>EXPERIENTA {{obj.experience_year|age}} </p>
+
+                                <p>CONSULTARE ONLINE {{obj.online_consultation}}</p>
+                                <p><b>VIZITEAZA COPII {{obj.children_visit}}</b></p>
+                                <p>DESCRIEREA SERVICIULUI{{obj.description_service_consultation}}</p>
+                            </div>
+
+                            <div class="col-md-4 text-right">
+                                <div>
+                                    <b>{{obj.rating}}</b> <span class="rating">
+                                    <i class="icon_star voted"></i>
+                                    <i class="icon_star voted"></i>
+                                    <i class="icon_star voted"></i>
+                                    <i class="icon_star"></i>
+                                    <i class="icon_star"></i>
+                                </span>
+                                    {% if reviews %}
+
+                                    <small>{{ reviews }} Comentarii</small>
+                                    {% else %}
+                                    <small>0 Comentarii</small>
+                                    {% endif %}
+                                    <br>
+                                    <br>
+                                </div>
+
+                                <div class="">
+                                    <span>Program</span>
+                                    <br>
+                                    <style>
+                                    table tr td{
+                                        text-align: right;
+                                        padding: 0px 0px 0px 13px;
+                                    }
+
+                                    </style>
+
+                                    <table style="border:none;margin-left: 22px;">
+                                        <tr>
+                                            <td>Luni</td>
+                                               {% for hour in obj.weekday.all %}
+                                                {% if hour.weekday == 1 %}
+                                            <td> {{ hour.from_hour|time:"G:i" }}-{{ hour.to_hour|time:"G:i" }} {% if hour.weekend %} {{ hour.weekend }} {% endif %}</td>
+                                                {% endif %}
+                                            {% endfor %}
+
+                                        </tr>
+                                        <tr>
+                                            <td>Marți</td>
+                                               {% for hour in obj.weekday.all %}
+                                                {% if hour.weekday == 2 %}
+                                            <td> {{ hour.from_hour|time:"G:i" }}-{{ hour.to_hour|time:"G:i" }} {% if hour.weekend %} {{ hour.weekend }} {% endif %}</td>
+                                                {% endif %}
+                                            {% endfor %}
+
+
+                                        </tr>
+                                        <tr>
+                                            <td>Miercuri</td>
+                                               {% for hour in obj.weekday.all %}
+                                                {% if hour.weekday == 3 %}
+                                            <td> {{ hour.from_hour|time:"G:i" }}-{{ hour.to_hour|time:"G:i" }} {% if hour.weekend %} {{ hour.weekend }} {% endif %}</td>
+                                                {% endif %}
+                                            {% endfor %}
+
+
+                                        </tr>
+                                        <tr>
+                                            <td>Joi</td>
+                                         {% for hour in obj.weekday.all %}
+                                                {% if hour.weekday == 4 %}
+                                            <td> {{ hour.from_hour|time:"G:i" }}-{{ hour.to_hour|time:"G:i" }} {% if hour.weekend %} {{ hour.weekend }} {% endif %}</td>
+                                                {% endif %}
+                                            {% endfor %}
+
+                                        </tr>
+                                        <tr>
+                                            <td>Vineri</td>
+                                             {% for hour in obj.weekday.all %}
+                                                {% if hour.weekday == 5 %}
+                                            <td> {{ hour.from_hour|time:"G:i" }}-{{ hour.to_hour|time:"G:i" }} {% if hour.weekend %} {{ hour.weekend }} {% endif %}</td>
+                                                {% endif %}
+                                            {% endfor %}
+
+                                        </tr>
+                                        <tr>
+                                            <td>Sâmbăta</td>
+                                               {% for hour in obj.weekday.all %}
+                                                {% if hour.weekday == 6 %}
+                                            <td> {{ hour.from_hour|time:"G:i" }}-{{ hour.to_hour|time:"G:i" }} {% if hour.weekend %} {{ hour.weekend }} {% endif %}</td>
+                                                {% endif %}
+                                            {% endfor %}
+                                        </tr>
+                                        <tr>
+                                            <td>Duminica</td>
+                                                 {% for hour in obj.weekday.all %}
+                                                {% if hour.weekday == 7 %}
+                                            <td> {{ hour.from_hour|time:"G:i" }}-{{ hour.to_hour|time:"G:i" }} {% if hour.weekend %} {{ hour.weekend }} {% endif %}</td>
+                                                {% endif %}
+                                            {% endfor %}
+
+                                        </tr>
+                                    </table>
+
+                                </div>
+                            </div>
+
+
+                        </div>
+                        <hr>
+                        <div class="row" style="padding: 0px 10px 0px 10px;">
+                            <div class="col-md-12">
+                                <table class="w-100" id="info-table">
+                                    <tr>
+                                        <td>
+                                            <b>{% if obj.clinica_text %}
+                                                <a href="" style="color: #343a40;">{{obj.clinica_text}}</a>
+                                                {% else %}
+                                                <a style="color: #343a40;">Need te be added</a>
+                                                {% endif %}
+                                            </b>
+                                        </td>
+                                        <td>
+                                            <b>{{obj.price}} MDL </b>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="2">servicii si pret
+                                    </tr>
+                                    <tr>
+<!--                                        <td>-->
+<!--&lt;!&ndash;                                            <p>in one row</p>&ndash;&gt;-->
+<!--                                            icon img-->
+<!--                                        </td>-->
+                                        <td>
+                                            <button
+                                                    type="button"
+                                                    class="but"
+                                                    data-toggle="modal"
+                                                    data-backdrop="false"
+                                                    data-target="#myModal">
+                                                View Location Name
+                                            </button>
+                                        </td>
+
+                                        <td>
+                                            <a href="/detail-page/{{ obj.id }}"
+                                               class="btn btn-rounded p-1"
+                                                >Book now</a>
+                                        </td>
+                                    </tr>
+                                </table>
+                                <div>
+
+                                    <a href="badges.html"
+                                       data-toggle="tooltip"
+                                       data-placement="top"
+                                       data-original-title="Badge Level"
+                                       class="badge_list_1">
+                                        <img src="img/badges/badge_1.svg" width="15" height="15" alt=""></a>
+
+                                    <!-- The Modal -->
+                                    <div class="modal" id="myModal">
+                                        <div class="modal-dialog">
+                                            <div class="modal-content">
+
+                                                <!-- Modal Header -->
+                                                <div class="modal-header">
+                                                    <h4 class="modal-title">Modal Heading</h4>
+                                                    <button type="button" class="close" data-dismiss="modal"
+                                                            data-focus="true">
+                                                        &times;
+                                                    </button>
+                                                </div>
+
+                                                <!-- Modal body -->
+                                                <div class="modal-body">
+                                                    <!--            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2720.194413054702!2d28.83626531542729!3d47.016788779150026!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x40c97c252d598905%3A0x263a3a48b774f502!2zU3RyYWRhIEJ1bGdhcsSDIDQxLCBDaGnImWluxIN1LCBNb2xkb3Zh!5e0!3m2!1sen!2s!4v1523460521296\" width="1000\" height="800\" class="Map"></iframe>-->
+
+                                                    <!--            <div class="mapouter"><div class="gmap_canvas"><iframe width="600" height="500" id="gmap_canvas" src="https://maps.google.com/maps?q=university%20of%20san%20francisco&t=&z=13&ie=UTF8&iwloc=&output=embed" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"></iframe><a href="https://www.pureblack.de"></a></div><style>.mapouter{text-align:right;height:500px;width:600px;}.gmap_canvas {overflow:hidden;background:none!important;height:200px;width:300px;}</style></div>-->
+                                                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1739.1107423068593!2d28.846653596277616!3d47.03010508024403!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x40c97c48d8e13cb1%3A0xc452678b926c52ce!2sBT%20Leasing%20MD!5e0!3m2!1sen!2s!4v1621119237870!5m2!1sen!2s"
+                                                            width="600" height="450" style="border:0;"
+                                                            allowfullscreen=""
+                                                            loading="lazy"></iframe>
+                                                </div>
+
+                                                <!-- Modal footer -->
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-danger" data-dismiss="modal"
+                                                    </button>
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <!--                              <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">-->
+                        <!--    Open modal-->
+                        <!--  </button>-->
+                        <!--							<li><a href="#0" onclick="onHtmlClick('Doctors', 0)" class="btn_listing">View on Map</a></li>-->
+                        <!--							<li><a href="{{obj.google_maps_link}}" class="btn_listing">View on Map</a></li>-->
+                        <!--                            <li><a href="{{obj.google_maps_link}}" target="_blank">Directions</a></li>-->
+
+                        <!-- The Modal -->
+                        <!--                            <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD_gBZfqnrdLR-pzcTnpxa46JTULSFUvq4&callback=initMap" type="text/javascript"></script>-->
+                    </div>
+                    {% endfor %}
+                    <!-- /strip_list -->
+                    {% if is_paginated %}
+                    <ul class="pagination">
+                        {% if page_obj.has_previous %}
+                        <li><a href="?page={{ page_obj.previous_page_number }}">&laquo;</a></li>
+                        {% else %}
+                        <li class="disabled"><span>&laquo;</span></li>
+                        {% endif %}
+                        {% for i in paginator.page_range %}
+                        {% if page_obj.number == i %}
+                        <li class="active"><span>{{ i }} <span class="sr-only">(current)</span></span></li>
+                        {% else %}
+                        <li><a href="?page={{ i }}">{{ i }}</a></li>
+                        {% endif %}
+                        {% endfor %}
+                        {% if page_obj.has_next %}
+                        <li><a href="?page={{ page_obj.next_page_number }}">&raquo;</a></li>
+                        {% else %}
+                        <li class="disabled"><span>&raquo;</span></li>
+                        {% endif %}
+                    </ul>
+                    {% endif %}
+
+                    <!--					<nav aria-label="" class="add_top_20">-->
+                    <!--						<ul class="pagination pagination-sm">-->
+                    <!--							<li class="page-item disabled">-->
+                    <!--								<a class="page-link" href="#" tabindex="-1">Previous</a>-->
+                    <!--							</li>-->
+                    <!--							<li class="page-item active"><a class="page-link" href="#">1</a></li>-->
+                    <!--							<li class="page-item"><a class="page-link" href="#">2</a></li>-->
+                    <!--							<li class="page-item"><a class="page-link" href="#">3</a></li>-->
+                    <!--							<li class="page-item">-->
+                    <!--								<a class="page-link" href="#">Next</a>-->
+                    <!--							</li>-->
+                    <!--						</ul>-->
+                    <!--					</nav>-->
+                    <!-- /pagination -->
+                </div>
+                <!-- /col -->
+
+                <aside class="col-xl-4 col-lg-4" id="sidebar">
+                    <div class="container list_home">
+                        <h3>Specialități</h3>
+                        <ul>
+                            {% for obj in service_doc %}
+                            <li><a href="{{request.scheme}}://{{request.META.HTTP_HOST}}/doctor/{{ obj|slugify }}/">
+                                {{ obj }}</a></li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                    <!-- /box_general -->
+                </aside>
+
+            </div>
+            <!-- /row -->
+        </div>
+        <!-- /container -->
+    </main>
+    <!-- /main -->
+
+    <footer>
+        <div class="container margin_60_35">
+            <div class="row">
+                <div class="col-lg-3 col-md-12">
+                    <p>
+                        <a href="index.html" title="Findoctor">
+                            <!--                            ENABLE-->
+                            <!--                            <img src="/img/logo.png" data-retina="true" alt="" width="163" height="36" class="img-fluid">-->
+                        </a>
+                    </p>
+                </div>
+                <div class="col-lg-3 col-md-4">
+                    <h5>Despre Serviciu</h5>
+                    <ul class="links">
+                        <li><a href="#0">Despre doc24</a></li>
+                        <li><a href="#0">Întrebări și răspunsuri</a></li>
+                        <li><a href="#0">Despre rating</a></li>
+                        <li><a href="blog.html">Blog</a></li>
+                        <li><a href="blog.html">Ghid de boli</a></li>
+                        <li><a href="#0">Termini și condiții</a></li>
+                        <li><a href="#0">Confidențialitate</a></li>
+
+                    </ul>
+                </div>
+                <div class="col-lg-3 col-md-4">
+                    <h5>Pentru Utilizători</h5>
+                    <ul class="links">
+                        <li><a href="#0">Doctori</a></li>
+                        <li><a href="#0">Clinici</a></li>
+                        <li><a href="#0">Centre de diagnostic</a></li>
+                        <li><a href="#0">Laboratoare</a></li>
+                        <li><a href="#0">Stomatologii</a></li>
+                        <li><a href="#0">Servicii</a></li>
+                        <li><a href="login.html">Logare</a></li>
+                        <li><a href="register.html">Inregistrare</a></li>
+                        <!--                        <li><a href="#0">Join as a Doctor</a></li>-->
+                        <!--                        <li><a href="#0">Download App</a></li>-->
+                    </ul>
+                </div>
+                <div class="col-lg-3 col-md-4">
+                    <h5>Contacte</h5>
+                    <ul class="contacts">
+                        <li><a href="tel://069274986"><i class="icon_mobile"></i> +373 69274986</a></li>
+                        <li><a href="mailto:info@doc24"><i class="icon_mail_alt"></i> info@doc24</a>
+                        </li>
+                    </ul>
+                    <div class="follow_us">
+                        <h5>Follow us</h5>
+                        <ul>
+                            <li><a href="#0"><i class="social_facebook"></i></a></li>
+                            <li><a href="#0"><i class="social_twitter"></i></a></li>
+                            <li><a href="#0"><i class="social_linkedin"></i></a></li>
+                            <li><a href="#0"><i class="social_instagram"></i></a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <!--/row-->
+            <hr>
+            <!--            <div class="row">-->
+            <!--                <div class="col-md-8">-->
+            <!--                    <ul id="additional_links">-->
+            <!--&lt;!&ndash;                        <li><a href="#0">Termini și condiții</a></li>&ndash;&gt;-->
+            <!--&lt;!&ndash;                        <li><a href="#0">Confidențialitate</a></li>&ndash;&gt;-->
+            <!--                    </ul>-->
+            <!--                </div>-->
+            <!--                <div class="col-md-4">-->
+            <!--                    <div id="copy">©2021 Doc24</div>-->
+            <!--                </div>-->
+            <!--            </div>-->
+            <!--        </div>-->
+    </footer>
+    <!--/footer-->
+</div>
+<!-- page -->
+
+<div id="toTop"></div>
+<!-- Back to top button -->
+
+<!-- COMMON SCRIPTS -->
+<script src="{% static 'js/jquery-2.2.4.min.js' %}"></script>
+<script src="{% static 'js/common_scripts.min.js' %}"></script>
+<script src="{% static 'js/functions.js' %}"></script>
+<script src="{% static 'js/my_script.js' %}"></script>
+
+<!-- SPECIFIC SCRIPTS -->
+<!--	<script src="http://maps.googleapis.com/maps/api/js"></script>-->
+<!--	<script src="{% static 'js/markerclusterer.js' %}"></script>-->
+<!--    <script src="{% static 'js/map_listing.js' %}"></script>-->
+<!--    <script src="{% static 'js/infobox.js' %}"></script>-->
+
+
+</body>
+</html>

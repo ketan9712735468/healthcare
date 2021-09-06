@@ -1,0 +1,27 @@
+{% extends 'mainapp/base.html' %}
+{% load static %}
+
+{% block content %}
+
+    <div class="card mx-auto shadow-sm" style="width: 400px;" id="loginForm">
+        <!-- <img src="" class="card-img-top" alt="..."> -->
+        <div class="card-body align-items-center align-content-center">
+            <h5 class="card-title">Регистрация</h5>
+
+            <form enctype="multipart/form-data" class="form-horizontal"
+                    {% if reg_type == 'applicant' %}
+                  action="{% url 'auth:register_applicant' %}"
+                    {% else %}
+                  action="{% url 'auth:register_company' %}"
+                    {% endif %}
+                  method="post">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <br>
+                <div class="d-grid">
+                    <input class="btn btn-secondary" type="submit" value="Регистрация">
+                </div>
+            </form>
+        </div>
+    </div>
+{% endblock %}

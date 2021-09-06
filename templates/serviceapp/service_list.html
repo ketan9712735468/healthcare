@@ -1,0 +1,605 @@
+﻿{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="Find easily a doctor and book online an appointment">
+    <meta name="author" content="Ansonika">
+    <title>FINDOCTOR - Find easily a doctor and book online an appointment</title>
+
+    <!-- Favicons-->
+	<link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon">
+	<link rel="apple-touch-icon" type="image/x-icon" href="img/apple-touch-icon-57x57-precomposed.png">
+	<link rel="apple-touch-icon" type="image/x-icon" sizes="72x72" href="img/apple-touch-icon-72x72-precomposed.png">
+	<link rel="apple-touch-icon" type="image/x-icon" sizes="114x114" href="img/apple-touch-icon-114x114-precomposed.png">
+	<link rel="apple-touch-icon" type="image/x-icon" sizes="144x144" href="img/apple-touch-icon-144x144-precomposed.png">
+
+
+    <!-- GOOGLE WEB FONT -->
+    <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700,800" rel="stylesheet">
+
+    <!-- BASE CSS -->
+    <link href="{% static 'css/bootstrap.css' %}" rel="stylesheet">
+    <link href="{% static 'css/style.css' %}" rel="stylesheet">
+    <link href="{% static 'css/menu.css' %}" rel="stylesheet">
+    <link href="{% static 'css/vendors.css' %}" rel="stylesheet">
+    <link href="{% static 'css/icon_fonts/css/all_icons_min.css' %}" rel="stylesheet">
+
+    <!-- SPECIFIC CSS -->
+    <link href="{% static 'css/date_picker.css' %}" rel="stylesheet">
+
+    <!-- YOUR CUSTOM CSS -->
+    <link href="{% static 'css/custom.css' %}" rel="stylesheet">
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD_gBZfqnrdLR-pzcTnpxa46JTULSFUvq4"
+            type="text/javascript"></script>
+
+            <script>
+                window.onload = function() {
+                <!--    function azaza(){-->
+                <!--$('.modal').hide();-->
+                <!--}-->
+                $(document).on('show.bs.modal', '.modal', function () {
+                  $(this).appendTo('body');
+                });
+                }
+
+
+            </script>
+            <style>
+                .but {
+                    background: white;
+                    border: none;
+                    color: #e74e84;
+                    cursor: pointer;
+                }
+
+                #info-table tr td{
+                    width: 50%;
+                    vertical-align: bottom;
+                    padding: 10px;
+                }
+                #info-table tr :first-child{
+                    text-align: left;
+                    padding: 0;
+                    /* margin: 10px; */
+
+                    /* border: 1px solid red; */
+                }
+                #info-table tr :last-child{
+                    padding: 0;
+                    /* margin: 10px; */
+                    /* text-align: left; */
+
+                    /* border: 1px solid red; */
+                }
+            </style>
+</head>
+
+
+<body>
+
+<div id="preloader" class="Fixed">
+    <div data-loader="circle-side"></div>
+</div>
+<!-- /Preload-->
+
+<div id="page">
+    <header class="static">
+        <a href="#menu" class="btn_mobile">
+            <div class="hamburger hamburger--spin" id="hamburger">
+                <div class="hamburger-box">
+                    <div class="hamburger-inner"></div>
+                </div>
+            </div>
+        </a>
+        <!-- /btn_mobile-->
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-3 col-6">
+                    <div id="logo">
+                        <a href="index.html" title="Findoctor"><img src="/img/logo.png" data-retina="true" alt=""
+                                                                    width="163" height="36"></a>
+                    </div>
+                </div>
+                <div class="col-lg-9 col-6">
+                    <ul id="top_access">
+                        <li><a href="login.html"><i class="pe-7s-user"></i></a></li>
+                        <li><a href="register-doctor.html"><i class="pe-7s-add-user"></i></a></li>
+                    </ul>
+                    <nav id="menu" class="main-menu">
+                        <ul>
+                            <li>
+                                <span><a href="#0">Home</a></span>
+                                <ul>
+                                    <li><a href="index.html">Home Default</a></li>
+                                    <li><a href="index-2.html">Home Version 2</a></li>
+                                    <li><a href="index-3.html">Home Version 3</a></li>
+                                    <li><a href="index-4.html">Home Version 4</a></li>
+                                    <li><a href="index-7.html">Home with Map</a></li>
+                                    <li><a href="index-6.html">Revolution Slider</a></li>
+                                    <li><a href="index-5.html">With Cookie Bar (EU law)</a></li>
+                                </ul>
+                            </li>
+                            <li>
+                                <span><a href="#0">Pages</a></span>
+                                <ul>
+                                    <li>
+                                        <span><a href="#0">List pages</a></span>
+                                        <ul>
+                                            <li><a href="list.html">List page</a></li>
+                                            <li><a href="grid-list.html">List grid page</a></li>
+                                            <li><a href="list-map.html">List map page</a></li>
+                                        </ul>
+                                    </li>
+                                    <li>
+                                        <span><a href="#0">Detail pages</a></span>
+                                        <ul>
+                                            <li><a href="detail-page.html">Detail page</a></li>
+                                            <li><a href="detail-page-2.html">Detail page 2</a></li>
+                                            <li><a href="detail-page-3.html">Detail page 3</a></li>
+                                            <li><a href="detail-page-working-booking.html">Detail working booking</a>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                    <li><a href="submit-review.html">Submit Review</a></li>
+                                    <li><a href="blog-1.html">Blog</a></li>
+                                    <li><a href="badges.html">Badges</a></li>
+                                    <li><a href="login.html">Login</a></li>
+                                    <li><a href="login-2.html">Login 2</a></li>
+                                    <li><a href="register-doctor.html">Register Doctor</a></li>
+                                    <li><a href="register-doctor-working.html">Working doctor register</a></li>
+                                    <li><a href="register.html">Register</a></li>
+                                    <li><a href="about.html">About Us</a></li>
+                                    <li><a href="contacts.html">Contacts</a></li>
+                                </ul>
+                            </li>
+                            <li>
+                                <span><a href="#0">Extra Elements</a></span>
+                                <ul>
+                                    <li><a href="booking-page.html">Booking page</a></li>
+                                    <li><a href="confirm.html">Confirm page</a></li>
+                                    <li><a href="faq.html">Faq page</a></li>
+                                    <li><a href="coming_soon/index.html">Coming soon</a></li>
+                                    <li>
+                                        <span><a href="#0">Pricing tables</a></span>
+                                        <ul>
+                                            <li><a href="pricing-tables-3.html">Pricing tables 1</a></li>
+                                            <li><a href="pricing-tables.html">Pricing tables 2</a></li>
+                                            <li><a href="pricing-tables-2.html">Pricing tables 3</a></li>
+                                        </ul>
+                                    </li>
+                                    <li><a href="icon-pack-1.html">Icon pack 1</a></li>
+                                    <li><a href="icon-pack-2.html">Icon pack 2</a></li>
+                                    <li><a href="icon-pack-3.html">Icon pack 3</a></li>
+                                    <li><a href="404.html">404 page</a></li>
+                                </ul>
+                            </li>
+                            <li><span><a href="#0">Buy this template</a></span></li>
+                        </ul>
+                    </nav>
+                    <!-- /main-menu -->
+                </div>
+            </div>
+        </div>
+        <!-- /container -->
+    </header>
+    <!-- /header -->
+    <style>
+	#tog.del {
+  display: none;
+}
+#mog.del {
+  display: none;
+}
+    </style>
+    <main class="theia-exception">
+        <div id="results">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-6">
+                        <h4><strong>Showing 10</strong> of 140 results</h4>
+                    </div>
+                    <div class="col-md-6">
+                        <form action="{% url 'choose_city' %}" method="POST">
+                            <select id="service_type" name="service_type" onchange="selectSearchType()">
+                                {% for serv in service_type %}
+                                <option value="{{ serv }}">{{ serv }}</option>
+                                {% endfor %}
+
+                            </select>
+                            <select name="service_doc" id="mog">
+                                {% for serv in service_doc %}
+                                <option value="{{ serv }}">{{ serv }}</option>
+                                {% endfor %}
+
+                            </select>
+                            <select name="service_serv" id="tog" class="del">
+                                {% for serv in service_serv %}
+                                <option value="{{ serv }}">{{ serv }}</option>
+                                {% endfor %}
+                            </select>
+                            <select name="location">
+                                {% for loc in location %}
+                                <option value="{{ loc }}">{{ loc }}</option>
+                                {% endfor %}
+                            </select>
+                            <button>Search</button>
+
+                        </form>
+                        <!--						<div class="search_bar_list">-->
+                        <!--							<input type="text" class="form-control" placeholder="Ex. Specialist, Name, Doctor...">-->
+                        <!--							<input type="submit" value="Search">-->
+                        <!--						</div>-->
+                    </div>
+                </div>
+                <!-- /row -->
+            </div>
+            <!-- /container -->
+        </div>
+        <!-- /results -->
+
+        <div class="filters_listing">
+            <div class="container">
+                <ul class="clearfix">
+                    <li>
+                        <h6>Type</h6>
+                        <div class="switch-field">
+                            <input type="radio" id="all" name="type_patient" value="all" checked>
+                            <label for="all">All</label>
+                            <input type="radio" id="doctors" name="type_patient" value="doctors">
+                            <label for="doctors">Doctors</label>
+                            <input type="radio" id="clinics" name="type_patient" value="clinics">
+                            <label for="clinics">Clinics</label>
+                        </div>
+                    </li>
+                    <li>
+                        <h6>Layout</h6>
+                        <div class="layout_view">
+                            <a href="grid-list.html"><i class="icon-th"></i></a>
+                            <a href="#0" class="active"><i class="icon-th-list"></i></a>
+                            <a href="list-map.html"><i class="icon-map-1"></i></a>
+                        </div>
+                    </li>
+                    <li>
+                        <h6>Sort by</h6>
+                        <select name="orderby" class="selectbox">
+                            <option value="Closest">Closest</option>
+                            <option value="Best rated">Best rated</option>
+                            <option value="Men">Men</option>
+                            <option value="Women">Women</option>
+                        </select>
+                    </li>
+                </ul>
+            </div>
+            <!-- /container -->
+        </div>
+        <!-- /filters -->
+
+        <div class="container margin_60_35">
+            <div class="row">
+                <div class="col-md-7">
+                    {% for obj in page_obj %}
+                    <div class="strip_list wow fadeIn" style="padding: 10px;">
+
+                        <div class="row p-4">
+                            <div class="col-md-3 border p-0 m-0">
+                                <figure style="border-radius: 0px;height: 100%;width: 100%;position: inherit;top: 0;left: 0;">
+                                    <a href={{request.scheme}}://{{request.META.HTTP_HOST}}/serviciu/detail-page/{{obj.id}}>
+                                        <img src="http://via.placeholder.com/565x565.jpg" alt="" style="height: 100%; width: 100%;border-radius: none;">
+                                    </a>
+                                </figure>
+
+                            </div>
+
+                            <div class="col-md-5">
+                                <!-- <a href="#0" class="wish_bt"></a> -->
+                                <h3>{{obj.first_name}} {{obj.last_name}}</h3>
+                                <small>{{ obj.domain }}</small>
+                                <!-- <h3>{{request}}</h3> -->
+                                <p>{{obj.doctor_category}} {{obj.price}} {{obj.price}} {{obj.children}} {{obj.description_service}} {{obj.rating}}</p>
+
+
+                                <p>Lorem Ipsum is simply dummy text.</p>
+                                <p><b>Lorem Ipsum :</b></p>
+                                <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
+                            </div>
+
+                            <div class="col-md-4 text-center">
+                               <div>
+                                <b>4.5 </b> <span class="rating">
+                                    <i class="icon_star voted"></i>
+                                    <i class="icon_star voted"></i>
+                                    <i class="icon_star voted"></i>
+                                    <i class="icon_star"></i>
+                                    <i class="icon_star"></i>
+                                </span>
+                                <small>145 ratings</small>
+                                <br>
+                                <br>
+                               </div>
+
+                               <div class="">
+                                <span>Bosar Somoy:</span>
+                                <br>
+                                <style>
+                                    table tr td{
+                                        text-align: right;
+                                        padding: 0px 0px 0px 13px;
+                                    }
+                                </style>
+
+                                <table style="border:none;">
+                                    <tr>
+                                        <td>Lorun</td>
+                                        <td>12:00 - 14:00</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Lorun</td>
+                                        <td>12:00 - 14:00</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Lorun</td>
+                                        <td>12:00 - 14:00</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Lorun</td>
+                                        <td>12:00 - 14:00</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Lorun</td>
+                                        <td>12:00 - 14:00</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Lorun</td>
+                                        <td>Bondho</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Lorun</td>
+                                        <td>Bondho</td>
+                                    </tr>
+                                </table>
+
+                               </div>
+                            </div>
+
+
+
+                        </div>
+                        <hr>
+                        <div class="row" style="padding: 0px 10px 0px 10px;">
+                           <div class="col-md-12">
+                               <table class="w-100" id="info-table">
+                                   <tr>
+                                       <td>
+                                        <b>
+                                           <a href="" style="color: #343a40;">CLINIC</a>
+                                       </b>
+                                    </td>
+                                       <td>
+                                           <b>PRICE</b>
+                                       </td>
+                                   </tr>
+                                   <tr>
+                                       <td colspan="2">Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                                    </tr>
+                                   <tr>
+                                       <td>
+                                            <button
+                                            type="button"
+                                            class="but"
+                                            data-toggle="modal"
+                                            data-backdrop="false"
+                                            data-target="#myModal">
+                                                View Location Name
+                                            </button>
+                                       </td>
+                                       <td>
+                                            <a href="detail-page/{{ obj.id }}"
+                                            class="btn btn-rounded p-1"
+                                             >Book now</a>
+                                       </td>
+                                   </tr>
+                               </table>
+                               <div>
+
+                                <a href="badges.html"
+                                data-toggle="tooltip"
+                                data-placement="top"
+                                data-original-title="Badge Level"
+                                class="badge_list_1">
+                                <img src="img/badges/badge_1.svg" width="15" height="15" alt=""></a>
+
+                                <!-- The Modal -->
+                                <div class="modal" id="myModal">
+                                    <div class="modal-dialog">
+                                        <div class="modal-content">
+
+                                            <!-- Modal Header -->
+                                            <div class="modal-header">
+                                                <h4 class="modal-title">Modal Heading</h4>
+                                                <button type="button" class="close" data-dismiss="modal" data-focus="true">
+                                                    &times;
+                                                </button>
+                                            </div>
+
+                                            <!-- Modal body -->
+                                            <div class="modal-body">
+                                                <!--            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2720.194413054702!2d28.83626531542729!3d47.016788779150026!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x40c97c252d598905%3A0x263a3a48b774f502!2zU3RyYWRhIEJ1bGdhcsSDIDQxLCBDaGnImWluxIN1LCBNb2xkb3Zh!5e0!3m2!1sen!2s!4v1523460521296\" width="1000\" height="800\" class="Map"></iframe>-->
+
+                                                <!--            <div class="mapouter"><div class="gmap_canvas"><iframe width="600" height="500" id="gmap_canvas" src="https://maps.google.com/maps?q=university%20of%20san%20francisco&t=&z=13&ie=UTF8&iwloc=&output=embed" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"></iframe><a href="https://www.pureblack.de"></a></div><style>.mapouter{text-align:right;height:500px;width:600px;}.gmap_canvas {overflow:hidden;background:none!important;height:200px;width:300px;}</style></div>-->
+                                                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1739.1107423068593!2d28.846653596277616!3d47.03010508024403!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x40c97c48d8e13cb1%3A0xc452678b926c52ce!2sBT%20Leasing%20MD!5e0!3m2!1sen!2s!4v1621119237870!5m2!1sen!2s"
+                                                        width="600" height="450" style="border:0;" allowfullscreen=""
+                                                        loading="lazy"></iframe>
+                                            </div>
+
+                                            <!-- Modal footer -->
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-danger" data-dismiss="modal"
+                                                </button>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                           </div>
+                        </div>
+
+
+
+
+
+
+
+                        <!--                              <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">-->
+                        <!--    Open modal-->
+                        <!--  </button>-->
+                        <!--							<li><a href="#0" onclick="onHtmlClick('Doctors', 0)" class="btn_listing">View on Map</a></li>-->
+                        <!--							<li><a href="{{obj.google_maps_link}}" class="btn_listing">View on Map</a></li>-->
+                        <!--                            <li><a href="{{obj.google_maps_link}}" target="_blank">Directions</a></li>-->
+
+                        <!-- The Modal -->
+                        <!--                            <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD_gBZfqnrdLR-pzcTnpxa46JTULSFUvq4&callback=initMap" type="text/javascript"></script>-->
+                    </div>
+                    {% endfor %}
+                    <!-- /strip_list -->
+                    {% if is_paginated %}
+                    <ul class="pagination">
+                        {% if page_obj.has_previous %}
+                        <li><a href="?page={{ page_obj.previous_page_number }}">&laquo;</a></li>
+                        {% else %}
+                        <li class="disabled"><span>&laquo;</span></li>
+                        {% endif %}
+                        {% for i in paginator.page_range %}
+                        {% if page_obj.number == i %}
+                        <li class="active"><span>{{ i }} <span class="sr-only">(current)</span></span></li>
+                        {% else %}
+                        <li><a href="?page={{ i }}">{{ i }}</a></li>
+                        {% endif %}
+                        {% endfor %}
+                        {% if page_obj.has_next %}
+                        <li><a href="?page={{ page_obj.next_page_number }}">&raquo;</a></li>
+                        {% else %}
+                        <li class="disabled"><span>&raquo;</span></li>
+                        {% endif %}
+                    </ul>
+                    {% endif %}
+
+                    <!--					<nav aria-label="" class="add_top_20">-->
+                    <!--						<ul class="pagination pagination-sm">-->
+                    <!--							<li class="page-item disabled">-->
+                    <!--								<a class="page-link" href="#" tabindex="-1">Previous</a>-->
+                    <!--							</li>-->
+                    <!--							<li class="page-item active"><a class="page-link" href="#">1</a></li>-->
+                    <!--							<li class="page-item"><a class="page-link" href="#">2</a></li>-->
+                    <!--							<li class="page-item"><a class="page-link" href="#">3</a></li>-->
+                    <!--							<li class="page-item">-->
+                    <!--								<a class="page-link" href="#">Next</a>-->
+                    <!--							</li>-->
+                    <!--						</ul>-->
+                    <!--					</nav>-->
+                    <!-- /pagination -->
+                </div>
+                <!-- /col -->
+
+                <aside class="col-lg-5" id="sidebar">
+                    <!--					<div id="map_listing" class="normal_list">-->
+                    <!--					</div>-->
+                </aside>
+                <!-- /aside -->
+
+            </div>
+            <!-- /row -->
+        </div>
+        <!-- /container -->
+    </main>
+    <!-- /main -->
+
+    <footer>
+        <div class="container margin_60_35">
+            <div class="row">
+                <div class="col-lg-3 col-md-12">
+                    <p>
+                        <a href="index.html" title="Findoctor">
+                            <img src="/img/logo.png" data-retina="true" alt="" width="163" height="36" class="img-fluid">
+                        </a>
+                    </p>
+                </div>
+                <div class="col-lg-3 col-md-4">
+                    <h5>About</h5>
+                    <ul class="links">
+                        <li><a href="#0">About us</a></li>
+                        <li><a href="blog.html">Blog</a></li>
+                        <li><a href="#0">FAQ</a></li>
+                        <li><a href="login.html">Login</a></li>
+                        <li><a href="register.html">Register</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-3 col-md-4">
+                    <h5>Useful links</h5>
+                    <ul class="links">
+                        <li><a href="#0">Doctors</a></li>
+                        <li><a href="#0">Clinics</a></li>
+                        <li><a href="#0">Specialization</a></li>
+                        <li><a href="#0">Join as a Doctor</a></li>
+                        <li><a href="#0">Download App</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-3 col-md-4">
+                    <h5>Contact with Us</h5>
+                    <ul class="contacts">
+                        <li><a href="tel://61280932400"><i class="icon_mobile"></i> + 61 23 8093 3400</a></li>
+                        <li><a href="mailto:info@findoctor.com"><i class="icon_mail_alt"></i> help@findoctor.com</a>
+                        </li>
+                    </ul>
+                    <div class="follow_us">
+                        <h5>Follow us</h5>
+                        <ul>
+                            <li><a href="#0"><i class="social_facebook"></i></a></li>
+                            <li><a href="#0"><i class="social_twitter"></i></a></li>
+                            <li><a href="#0"><i class="social_linkedin"></i></a></li>
+                            <li><a href="#0"><i class="social_instagram"></i></a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <!--/row-->
+            <hr>
+            <div class="row">
+                <div class="col-md-8">
+                    <ul id="additional_links">
+                        <li><a href="#0">Terms and conditions</a></li>
+                        <li><a href="#0">Privacy</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-4">
+                    <div id="copy">© 2017 Findoctor</div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!--/footer-->
+</div>
+<!-- page -->
+
+<div id="toTop"></div>
+<!-- Back to top button -->
+
+<!-- COMMON SCRIPTS -->
+<script src="{% static 'js/jquery-2.2.4.min.js' %}"></script>
+<script src="{% static 'js/common_scripts.min.js' %}"></script>
+<script src="{% static 'js/functions.js' %}"></script>
+<script src="{% static 'js/my_script.js' %}"></script>
+
+<!-- SPECIFIC SCRIPTS -->
+<!--	<script src="http://maps.googleapis.com/maps/api/js"></script>-->
+<!--	<script src="{% static 'js/markerclusterer.js' %}"></script>-->
+<!--    <script src="{% static 'js/map_listing.js' %}"></script>-->
+<!--    <script src="{% static 'js/infobox.js' %}"></script>-->
+
+
+</body>
+</html>

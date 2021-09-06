@@ -1,0 +1,117 @@
+.but {
+    background: white;
+    border: none;
+    color: #e74e84;
+    cursor: pointer;
+}
+
+#info-table tr td{
+    width: 50%;
+    vertical-align: bottom;
+    padding: 10px;
+}
+#info-table tr :first-child{
+    text-align: left;
+    padding: 0;
+    /* margin: 10px; */
+
+    /* border: 1px solid red; */
+}
+#info-table tr :last-child{
+    padding: 0;
+    /* margin: 10px; */
+    /* text-align: left; */
+
+    /* border: 1px solid red; */
+
+}
+.rating-i {
+float:left;
+}
+
+/* :not(:checked) is a filter, so that browsers that don’t support :checked don’t
+follow these rules. Every browser that supports :checked also supports :not(), so
+it doesn’t make the test unnecessarily selective */
+.rating-i:not(:checked) > input {
+position: absolute;
+/* top: -9999px; */
+clip: rect(0, 0, 0, 0);
+height: 0;
+width: 0;
+overflow: hidden;
+opacity: 0;
+}
+
+.rating-i:not(:checked) > label {
+float:right;
+width:1em;
+/* padding:0 .1em; */
+overflow:hidden;
+white-space:nowrap;
+cursor:pointer;
+font-size:150%;
+line-height:1.2;
+color:#ddd;
+/* text-shadow:1px 1px #bbb, 2px 2px #666, .1em .1em .2em rgba(0,0,0,.5); */
+}
+
+.rating-i:not(:checked) > label:before {
+content: '★ ';
+}
+
+.rating-i > input:checked ~ label {
+color:#ffc107;
+/* text-shadow:1px 1px #c60, 2px 2px #940, .1em .1em .2em rgba(0,0,0,.5); */
+}
+
+.rating-i:not(:checked) > label:hover,
+.rating-i:not(:checked) > label:hover ~ label {
+color: #ffc107;
+/* text-shadow:1px 1px goldenrod, 2px 2px #B57340, .1em .1em .2em rgba(0,0,0,.5); */
+}
+
+.rating-i > input:checked + label:hover,
+.rating-i > input:checked + label:hover ~ label,
+.rating-i > input:checked ~ label:hover,
+.rating-i > input:checked ~ label:hover ~ label,
+.rating-i > label:hover ~ input:checked ~ label {
+color: #ea0;
+/* text-shadow:1px 1px goldenrod, 2px 2px #B57340, .1em .1em .2em rgba(0,0,0,.5); */
+}
+
+.rating-i > label:active {
+position:relative;
+top:2px;
+left:2px;
+}
+
+.rating-container .clear-rating {
+    display: none;
+    padding-right: 0px;
+}
+.caption-badge,.caption-secondary{
+    display: none;
+}
+.rating-container{
+    margin-right: -10px;
+    display: inline;
+    
+}
+.rating-disabled .rating-stars{
+    cursor: inherit;
+}
+@media screen and (min-width: 750px) and (max-width: 1200px) {
+    #image figure a img{
+        width: 100% !important;
+        height: auto !important;
+    }
+    #image{
+        overflow: hidden;
+    }
+   
+}
+.menu-list li {
+    display:table-cell !important;
+    vertical-align: top;
+    padding: 5px !important;
+}

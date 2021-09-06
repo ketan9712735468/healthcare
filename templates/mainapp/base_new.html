@@ -1,0 +1,878 @@
+﻿{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<meta name="description" content="Find easily a doctor and book online an appointment">
+	<meta name="author" content="Ansonika">
+	<title>FINDOCTOR - Find easily a doctor and book online an appointment</title>
+
+	<!-- Favicons-->
+	<link rel="shortcut icon" href="{% static 'img/favicon.ico' %}" type="image/x-icon">
+	<link rel="apple-touch-icon" type="image/x-icon" href="{% static 'img/apple-touch-icon-57x57-precomposed.png' %}">
+	<link rel="apple-touch-icon" type="image/x-icon" sizes="72x72" href="{% static 'img/apple-touch-icon-72x72-precomposed.png' %}">
+	<link rel="apple-touch-icon" type="image/x-icon" sizes="114x114" href="{% static 'img/apple-touch-icon-114x114-precomposed.png' %}">
+	<link rel="apple-touch-icon" type="image/x-icon" sizes="144x144" href="{% static 'img/apple-touch-icon-144x144-precomposed.png' %}">
+
+	<!-- GOOGLE WEB FONT -->
+    <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700,800" rel="stylesheet">
+
+	<!-- BASE CSS -->
+	<link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
+	<link href="{% static 'css/style.css' %}" rel="stylesheet">
+	<link href="{% static 'css/menu.css' %}" rel="stylesheet">
+	<link href="{% static 'css/vendors.css' %}" rel="stylesheet">
+	<link href="{% static 'css/icon_fonts/css/all_icons_min.css' %}" rel="stylesheet">
+
+	<!-- YOUR CUSTOM CSS -->
+	<link href="{% static 'css/custom.css' %}" rel="stylesheet">
+    <script src="{% static 'js/my_script.js' %}"></script>
+
+</head>
+
+<body>
+
+	<div id="preloader" class="Fixed">
+		<div data-loader="circle-side"></div>
+	</div>
+	<!-- /Preload-->
+
+	<div id="page">
+		<div class="header_sticky" style="height: 70px">
+			<a href="#menu" class="btn_mobile">
+				<div class="hamburger hamburger--spin" id="hamburger">
+					<div class="hamburger-box">
+						<div class="hamburger-inner"></div>
+					</div>
+				</div>
+			</a>
+			<!-- /btn_mobile-->
+			<div class="container" style="height:85px">
+				<div class="row">
+					<div class="col-lg-9 col-6">
+						<div id="logo_home">
+							<h1><a href="index.html" title="Findoctor">Findoctor</a></h1>
+						<nav id="menu" class="main-menu" style="float:left">
+							<ul>
+								<li>
+									<span><a href="#0">Medici</a></span>
+								</li>
+								<li>
+									<span><a href="#0">Clinici</a></span>
+								</li>
+								<li>
+									<span><a href="#0">Centre de diagnostic</a></span>
+								</li>
+								<li>
+									<span><a href="#0">Laboratoare</a></span>
+								</li>
+								<li>
+									<span><a href="#0">Stomatologii</a></span>
+								</li>
+								
+							</ul>
+							
+						</nav>
+
+						</div>
+					</div>
+					<div class="col-lg-3 col-6">
+						<a href="tel://069274986" class="tablet"><i class="icon_mobile"></i> +373 69274986</a>
+						<ul id="top_access">
+							<!-- <li><a href="login.html"><i class="pe-7s-user"></i></a></li>
+							<li><a href="register-doctor.html"><i class="pe-7s-add-user"></i></a></li> -->
+						</ul>
+						<!-- /main-menu -->
+					</div>
+				</div>
+			</div>
+			<!-- /container -->
+		</header>
+		<!-- /header -->
+
+		<main>
+			<div class="hero_home version_1">
+				<div class="content">
+					<h3>Find a Doctor!</h3>
+					<p>
+						Ridiculus sociosqu cursus neque cursus curae ante scelerisque vehicula.
+					</p>
+					<style>
+						#tog.del {
+							display: none;
+						}
+
+						#mog.del {
+							display: none;
+						}
+					</style>
+
+					<form action="{% url 'choose_city' %}" method="POST">
+						<select id="service_type" name="service_type" onchange="selectSearchType()">
+							{% for serv in service_type %}
+							<option value="{{ serv }}">{{ serv }}</option>
+							{% endfor %}
+
+						</select>
+						<select name="service_doc" id="mog">
+							{% for serv in service_doc %}
+							<option value="{{ serv }}">{{ serv }}</option>
+							{% endfor %}
+
+						</select>
+						<select name="service_serv" id="tog" class="del" disabled>
+							{% for serv in service_serv %}
+							<option value="{{ serv }}">{{ serv }}</option>
+							{% endfor %}
+						</select>
+						<select name="location">
+							{% for loc in location %}
+							<option value="{{ loc }}">{{ loc }}</option>
+							{% endfor %}
+						</select>
+						<button style="margin:13px;background-color:lightgrey">Search</button>
+
+					</form>
+				</div>
+			</div>
+			<!-- /Hero -->
+
+			<div class="container margin_120_95">
+				<div class="main_title">
+					<h2>Discover the <strong>online</strong> appointment!</h2>
+					<p>Usu habeo equidem sanctus no. Suas summo id sed, erat erant oporteat cu pri. In eum omnes molestie. Sed ad debet scaevola, ne mel.</p>
+				</div>
+				<div class="row add_bottom_30">
+					<div class="col-lg-4">
+						<div class="box_feat" id="icon_1">
+							<span></span>
+							<h3>Find a Doctor</h3>
+							<p>Usu habeo equidem sanctus no. Suas summo id sed, erat erant oporteat cu pri. In eum omnes molestie.</p>
+						</div>
+					</div>
+					<div class="col-lg-4">
+						<div class="box_feat" id="icon_2">
+							<span></span>
+							<h3>View profile</h3>
+							<p>Usu habeo equidem sanctus no. Suas summo id sed, erat erant oporteat cu pri. In eum omnes molestie.</p>
+						</div>
+					</div>
+					<div class="col-lg-4">
+						<div class="box_feat" id="icon_3">
+							<h3>Book a visit</h3>
+							<p>Usu habeo equidem sanctus no. Suas summo id sed, erat erant oporteat cu pri. In eum omnes molestie.</p>
+						</div>
+					</div>
+				</div>
+				<!-- /row -->
+
+			</div>
+			<!-- /container -->
+			<!--		<div class="bg_color_1">-->
+			<!--			<div class="container margin_120_95">-->
+			<!--				<div class="main_title">-->
+			<!--					<h2>Most Viewed doctors</h2>-->
+			<!--					<p>Usu habeo equidem sanctus no. Suas summo id sed, erat erant oporteat cu pri.</p>-->
+			<!--				</div>-->
+			<!--				<div id="reccomended" class="owl-carousel owl-theme">-->
+			<!--					<div class="item">-->
+			<!--						<a href="detail-page.html">-->
+			<!--							<div class="views"><i class="icon-eye-7"></i>140</div>-->
+			<!--							<div class="title">-->
+			<!--								<h4>Dr. Julia Holmes<em>Pediatrician - Cardiologist</em></h4>-->
+			<!--							</div><img src="http://via.placeholder.com/350x500.jpg" alt="">-->
+			<!--						</a>-->
+			<!--					</div>-->
+			<!--					<div class="item">-->
+			<!--						<a href="detail-page.html">-->
+			<!--							<div class="views"><i class="icon-eye-7"></i>120</div>-->
+			<!--							<div class="title">-->
+			<!--								<h4>Dr. Julia Holmes<em>Pediatrician</em></h4>-->
+			<!--							</div><img src="http://via.placeholder.com/350x500.jpg" alt="">-->
+			<!--						</a>-->
+			<!--					</div>-->
+			<!--					<div class="item">-->
+			<!--						<a href="detail-page.html">-->
+			<!--							<div class="views"><i class="icon-eye-7"></i>115</div>-->
+			<!--							<div class="title">-->
+			<!--								<h4>Dr. Julia Holmes<em>Pediatrician</em></h4>-->
+			<!--							</div><img src="http://via.placeholder.com/350x500.jpg" alt="">-->
+			<!--						</a>-->
+			<!--					</div>-->
+			<!--					<div class="item">-->
+			<!--						<a href="detail-page.html">-->
+			<!--							<div class="views"><i class="icon-eye-7"></i>98</div>-->
+			<!--							<div class="title">-->
+			<!--								<h4>Dr. Julia Holmes<em>Pediatrician</em></h4>-->
+			<!--							</div><img src="http://via.placeholder.com/350x500.jpg" alt="">-->
+			<!--						</a>-->
+			<!--					</div>-->
+			<!--					<div class="item">-->
+			<!--						<a href="detail-page.html">-->
+			<!--							<div class="views"><i class="icon-eye-7"></i>98</div>-->
+			<!--							<div class="title">-->
+			<!--								<h4>Dr. Julia Holmes<em>Pediatrician</em></h4>-->
+			<!--							</div><img src="http://via.placeholder.com/350x500.jpg" alt="">-->
+			<!--						</a>-->
+			<!--					</div>-->
+			<!--				</div>-->
+			<!--				&lt;!&ndash; /carousel &ndash;&gt;-->
+			<!--			</div>-->
+			<!--			&lt;!&ndash; /container &ndash;&gt;-->
+			<!--		</div>-->
+			<!-- /white_bg -->
+
+			<style>
+				.ul-sty {
+					display: block;
+					list-style-type: disc;
+					margin-block-start: 1em;
+					margin-block-end: 1em;
+					margin-inline-start: 0px;
+					margin-inline-end: 0px;
+				}
+
+                .chooser__list {
+                    margin: 0px;
+                    padding: 30px 0px;
+                    display: -webkit-flex;
+                    -webkit-flex-wrap: wrap;
+                }
+
+                .li-sty {
+                    width: 25%;
+                    position: relative;
+                    vertical-align: top;
+                    padding: 0px 0px 0px 0px;
+                    margin-bottom: 20px;
+                }
+
+                .div-sty {
+                    padding: 10px 10px 0px 20px;
+                    background-color: white;
+                    overflow: hidden;
+                    position: relative;
+                   
+                }
+
+                .chooser__list__item-wrapper:before {
+                    content: '';
+                    position: absolute;
+                    bottom: 4px;
+                    width: 84%;
+                    border-bottom: 1.5px dotted #a3a3a3;
+                }
+
+                .chooser__list__item-wrapper {
+                    position: relative;
+                    /* padding: 0 30px 0 0px; */
+                    margin: 0;
+                }
+                .chooser__list__item-wrapper2 {
+                    position: relative;
+                    /* padding: 0 30px 0 0px; */
+                    margin: 0;
+                }
+
+                .chooser__list__quantity {
+                    position: absolute;
+                    top: auto;
+                    bottom: 0;
+                    right: 16px;
+                    min-width: 26px;
+                    text-align: right;
+                    background: #ffff;
+                    padding-left: 5px;
+                }
+                .chooser__list__quantity2 {
+                    position: absolute;
+                    top: auto;
+                    bottom: 0;
+                    right: -26px;
+                    min-width: 26px;
+                    text-align: right;
+                    background: #fff;
+                    padding-left: 5px;
+                }
+
+                .chooser__list__item-link {
+                    background: #fff;
+                    position: relative;
+                    text-decoration: none;
+                    max-width: 100%;
+                    padding-right: 0px;
+                    color: black;
+                }
+                    .chooser__list__item-link:hover {
+                      
+                        color: red;
+
+                    }
+                .item-title_mobile {
+                    width: auto;
+                    position: relative;
+                    padding: 5px 22px 4px 24px;
+                    background: #46d5ac;
+                    color: #fff;
+                    font-size: 16px;
+                    font-weight: 500;
+                    line-height: 16px;
+                }
+                    .item-title_mobile:before {
+                        content: '';
+                        width: 16px;
+                        height: 8px;
+                        display: inline-block;
+                        background-color: #0957c3;
+                        -webkit-transform: rotate( -44deg );
+                        -ms-transform: rotate(-44deg);
+                        transform: rotate(-44deg);
+                        position: absolute;
+                        top: -3px;
+                        left: 5px;
+                    }
+                .diagnostics-record__item {
+                    width: 24%;
+                    position: relative;
+                    display: inline-block;
+                    vertical-align: top;
+                    padding: 10px 10px;
+                }
+                .diagnostics-record__inner-list {
+                    margin-top: 20px;
+                }
+
+                ol ol, ol ul, ul ol, ul ul {
+                    margin-bottom: 0;
+                }
+
+                ul {
+                    margin: 0;
+                    padding: 0;
+                }
+
+
+                .diagnostics-record__inner-list__item {
+                    margin-bottom: 20px;
+                    position: relative;
+
+                }
+                    .diagnostics-record__inner-list__item:before {
+                        content: '';
+                        position: absolute;
+                        top: auto;
+                        bottom: 2px;
+                        left: 0;
+                        width: 100%;
+                        border-bottom: 1.5px dotted rgba(51,53,54,.4);
+                        font-size: 14px;
+                        color: rgba(51,53,54,.4);
+                        height: 4px;
+                    }
+                    .diagnostics-record__inner-list__item .inner-list__quantity {
+                        position: absolute;
+                        top: auto;
+                        bottom: 0;
+                        right: 0;
+                        color: #333536;
+                        font-weight: 400;
+                        background: #ffff;
+                        padding-left: 0px;
+                    }
+			</style>
+			<div class="container margin_120_95 bg_color_1">
+				<div class="main_title">
+
+					<h3>Caută după profesie</h3>
+				</div>
+                <div style="        scroll-behavior: initial;
+        height: 322px;
+        overflow: hidden;
+        border: darkgrey;
+   " id="alllinkcontainer1">
+
+
+                    <div id="alllink1" style="        overflow: hidden;
+        height: 249px;">
+
+                        <div class="div-sty">
+                            <ul id="linkcontainer" class=" chooser__list">
+
+                                <li class="li-sty"><p class="chooser__list__item-wrapper"><a class="chooser__list__item-link" href="http://127.0.0.1:8000/doctor/acupunctor/">Acupunctor</a> <span class="chooser__list__quantity">23</span> </p></li>
+
+                                <li class="li-sty"><p class="chooser__list__item-wrapper"><a class="chooser__list__item-link" href="http://127.0.0.1:8000/doctor/alergolog/">Alergolog</a> <span class="chooser__list__quantity">23</span> </p></li>
+
+                                <li class="li-sty"><p class="chooser__list__item-wrapper"><a class="chooser__list__item-link" href="http://127.0.0.1:8000/doctor/androlog/">Androlog</a> <span class="chooser__list__quantity">23</span> </p></li>
+
+                                <li class="li-sty"><p class="chooser__list__item-wrapper"><a class="chooser__list__item-link" href="http://127.0.0.1:8000/doctor/cardiochirurg/">Cardiochirurg</a> <span class="chooser__list__quantity">23</span> </p></li>
+
+                                <li class="li-sty"><p class="chooser__list__item-wrapper"><a class="chooser__list__item-link" href="http://127.0.0.1:8000/doctor/cardiolog/">Cardiolog</a> <span class="chooser__list__quantity">23</span> </p></li>
+
+                                <li class="li-sty"><p class="chooser__list__item-wrapper"><a class="chooser__list__item-link" href="http://127.0.0.1:8000/doctor/cardiolog-interventionist/">Cardiolog intervenţionist</a> <span class="chooser__list__quantity">23</span> </p></li>
+
+                                <li class="li-sty"><p class="chooser__list__item-wrapper"><a class="chooser__list__item-link" href="http://127.0.0.1:8000/doctor/chirurg/">Chirurg</a> <span class="chooser__list__quantity">23</span> </p></li>
+
+                                <li class="li-sty"><p class="chooser__list__item-wrapper"><a class="chooser__list__item-link" href="http://127.0.0.1:8000/doctor/chirurg-estetician/">Chirurg estetician</a> <span class="chooser__list__quantity">23</span> </p></li>
+
+                                <li class="li-sty"><p class="chooser__list__item-wrapper"><a class="chooser__list__item-link" href="http://127.0.0.1:8000/doctor/chirurg-plastician/">Chirurg plastician</a> <span class="chooser__list__quantity">23</span> </p></li>
+
+                                <li class="li-sty"><p class="chooser__list__item-wrapper"><a class="chooser__list__item-link" href="http://127.0.0.1:8000/doctor/cosmetolog/">Cosmetolog</a> <span class="chooser__list__quantity">23</span> </p></li>
+
+                                <li class="li-sty"><p class="chooser__list__item-wrapper"><a class="chooser__list__item-link" href="http://127.0.0.1:8000/doctor/dermatolog/">Dermatolog</a> <span class="chooser__list__quantity">23</span> </p></li>
+
+                                <li class="li-sty"><p class="chooser__list__item-wrapper"><a class="chooser__list__item-link" href="http://127.0.0.1:8000/doctor/dietolog/">Dietolog</a> <span class="chooser__list__quantity">23</span> </p></li>
+
+                                <li class="li-sty"><p class="chooser__list__item-wrapper"><a class="chooser__list__item-link" href="http://127.0.0.1:8000/doctor/nutritionist/">Nutriționist</a> <span class="chooser__list__quantity">23</span> </p></li>
+
+                                <li class="li-sty"><p class="chooser__list__item-wrapper"><a class="chooser__list__item-link" href="http://127.0.0.1:8000/doctor/ecografist/">Ecografist</a> <span class="chooser__list__quantity">23</span> </p></li>
+
+                                <li class="li-sty"><p class="chooser__list__item-wrapper"><a class="chooser__list__item-link" href="http://127.0.0.1:8000/doctor/endocrinolog/">Endocrinolog</a> <span class="chooser__list__quantity">23</span> </p></li>
+
+                                <li class="li-sty"><p class="chooser__list__item-wrapper"><a class="chooser__list__item-link" href="http://127.0.0.1:8000/doctor/endoscopist/">Endoscopist</a> <span class="chooser__list__quantity">23</span> </p></li>
+
+                                <li class="li-sty"><p class="chooser__list__item-wrapper"><a class="chooser__list__item-link" href="http://127.0.0.1:8000/doctor/fitoterapeut/">Fitoterapeut</a> <span class="chooser__list__quantity">23</span> </p></li>
+
+                                <li class="li-sty"><p class="chooser__list__item-wrapper"><a class="chooser__list__item-link" href="http://127.0.0.1:8000/doctor/fizioterapeut/">Fizioterapeut</a> <span class="chooser__list__quantity">23</span> </p></li>
+
+                                <li class="li-sty"><p class="chooser__list__item-wrapper"><a class="chooser__list__item-link" href="http://127.0.0.1:8000/doctor/flebolog/">Flebolog</a> <span class="chooser__list__quantity">23</span> </p></li>
+
+                                <li class="li-sty"><p class="chooser__list__item-wrapper"><a class="chooser__list__item-link" href="http://127.0.0.1:8000/doctor/gastroenterolog/">Gastroenterolog</a> <span class="chooser__list__quantity">23</span> </p></li>
+
+                                <li class="li-sty"><p class="chooser__list__item-wrapper"><a class="chooser__list__item-link" href="http://127.0.0.1:8000/doctor/ginecolog/">Ginecolog</a> <span class="chooser__list__quantity">23</span> </p></li>
+
+                                <li class="li-sty"><p class="chooser__list__item-wrapper"><a class="chooser__list__item-link" href="http://127.0.0.1:8000/doctor/hematolog/">Hematolog</a> <span class="chooser__list__quantity">23</span> </p></li>
+
+                                <li class="li-sty"><p class="chooser__list__item-wrapper"><a class="chooser__list__item-link" href="http://127.0.0.1:8000/doctor/hepatolog/">Hepatolog</a> <span class="chooser__list__quantity">23</span> </p></li>
+
+                                <li class="li-sty"><p class="chooser__list__item-wrapper"><a class="chooser__list__item-link" href="http://127.0.0.1:8000/doctor/homeopat/">Homeopat</a> <span class="chooser__list__quantity">23</span> </p></li>
+
+                                <li class="li-sty"><p class="chooser__list__item-wrapper"><a class="chooser__list__item-link" href="http://127.0.0.1:8000/doctor/imagist/">Imagist</a> <span class="chooser__list__quantity">23</span> </p></li>
+
+                                <li class="li-sty"><p class="chooser__list__item-wrapper"><a class="chooser__list__item-link" href="http://127.0.0.1:8000/doctor/infectionist/">Infecționist</a> <span class="chooser__list__quantity">23</span> </p></li>
+
+                                <li class="li-sty"><p class="chooser__list__item-wrapper"><a class="chooser__list__item-link" href="http://127.0.0.1:8000/doctor/internist/">Internist</a> <span class="chooser__list__quantity">23</span> </p></li>
+
+                                <li class="li-sty"><p class="chooser__list__item-wrapper"><a class="chooser__list__item-link" href="http://127.0.0.1:8000/doctor/kinetoterapeut/">Kinetoterapeut</a> <span class="chooser__list__quantity">23</span> </p></li>
+
+                                <li class="li-sty"><p class="chooser__list__item-wrapper"><a class="chooser__list__item-link" href="http://127.0.0.1:8000/doctor/logoped/">Logoped</a> <span class="chooser__list__quantity">23</span> </p></li>
+
+                                <li class="li-sty"><p class="chooser__list__item-wrapper"><a class="chooser__list__item-link" href="http://127.0.0.1:8000/doctor/mamolog/">Mamolog</a> <span class="chooser__list__quantity">23</span> </p></li>
+
+                                <li class="li-sty"><p class="chooser__list__item-wrapper"><a class="chooser__list__item-link" href="http://127.0.0.1:8000/doctor/medic-de-familie/">Medic de familie</a> <span class="chooser__list__quantity">23</span> </p></li>
+
+                                <li class="li-sty"><p class="chooser__list__item-wrapper"><a class="chooser__list__item-link" href="http://127.0.0.1:8000/doctor/narcolog/">Narcolog</a> <span class="chooser__list__quantity">23</span> </p></li>
+
+                                <li class="li-sty"><p class="chooser__list__item-wrapper"><a class="chooser__list__item-link" href="http://127.0.0.1:8000/doctor/nefrolog/">Nefrolog</a> <span class="chooser__list__quantity">23</span> </p></li>
+
+                                <li class="li-sty"><p class="chooser__list__item-wrapper"><a class="chooser__list__item-link" href="http://127.0.0.1:8000/doctor/neurochirurg/">Neurochirurg</a> <span class="chooser__list__quantity">23</span> </p></li>
+
+                                <li class="li-sty"><p class="chooser__list__item-wrapper"><a class="chooser__list__item-link" href="http://127.0.0.1:8000/doctor/neurolog/">Neurolog</a> <span class="chooser__list__quantity">23</span> </p></li>
+
+                                <li class="li-sty"><p class="chooser__list__item-wrapper"><a class="chooser__list__item-link" href="http://127.0.0.1:8000/doctor/obstetrician-ginecolog/">Obstetrician-ginecolog</a> <span class="chooser__list__quantity">23</span> </p></li>
+
+                                <li class="li-sty"><p class="chooser__list__item-wrapper"><a class="chooser__list__item-link" href="http://127.0.0.1:8000/doctor/oftalmolog/">Oftalmolog</a> <span class="chooser__list__quantity">23</span> </p></li>
+
+                                <li class="li-sty"><p class="chooser__list__item-wrapper"><a class="chooser__list__item-link" href="http://127.0.0.1:8000/doctor/oncolog/">Oncolog</a> <span class="chooser__list__quantity">23</span> </p></li>
+
+                                <li class="li-sty"><p class="chooser__list__item-wrapper"><a class="chooser__list__item-link" href="http://127.0.0.1:8000/doctor/ortoped-traumatolog/">Ortoped-traumatolog</a> <span class="chooser__list__quantity">23</span> </p></li>
+
+                                <li class="li-sty"><p class="chooser__list__item-wrapper"><a class="chooser__list__item-link" href="http://127.0.0.1:8000/doctor/otorinolaringolog-orl/">Otorinolaringolog (ORL)</a> <span class="chooser__list__quantity">23</span> </p></li>
+
+                                <li class="li-sty"><p class="chooser__list__item-wrapper"><a class="chooser__list__item-link" href="http://127.0.0.1:8000/doctor/pediatru/">Pediatru</a> <span class="chooser__list__quantity">23</span> </p></li>
+
+                                <li class="li-sty"><p class="chooser__list__item-wrapper"><a class="chooser__list__item-link" href="http://127.0.0.1:8000/doctor/pneumolog/">Pneumolog</a> <span class="chooser__list__quantity">23</span> </p></li>
+
+                                <li class="li-sty"><p class="chooser__list__item-wrapper"><a class="chooser__list__item-link" href="http://127.0.0.1:8000/doctor/proctolog/">Proctolog</a> <span class="chooser__list__quantity">23</span> </p></li>
+
+                                <li class="li-sty"><p class="chooser__list__item-wrapper"><a class="chooser__list__item-link" href="http://127.0.0.1:8000/doctor/psihiatru/">Psihiatru</a> <span class="chooser__list__quantity">23</span> </p></li>
+
+                                <li class="li-sty"><p class="chooser__list__item-wrapper"><a class="chooser__list__item-link" href="http://127.0.0.1:8000/doctor/psiholog/">Psiholog</a> <span class="chooser__list__quantity">23</span> </p></li>
+
+                                <li class="li-sty"><p class="chooser__list__item-wrapper"><a class="chooser__list__item-link" href="http://127.0.0.1:8000/doctor/psihoterapeut/">Psihoterapeut</a> <span class="chooser__list__quantity">23</span> </p></li>
+
+                                <li class="li-sty"><p class="chooser__list__item-wrapper"><a class="chooser__list__item-link" href="http://127.0.0.1:8000/doctor/reabilitolog/">Reabilitolog</a> <span class="chooser__list__quantity">23</span> </p></li>
+
+                                <li class="li-sty"><p class="chooser__list__item-wrapper"><a class="chooser__list__item-link" href="http://127.0.0.1:8000/doctor/reanimatolog-neonatolog/">Reanimatolog-neonatolog</a> <span class="chooser__list__quantity">23</span> </p></li>
+
+                                <li class="li-sty"><p class="chooser__list__item-wrapper"><a class="chooser__list__item-link" href="http://127.0.0.1:8000/doctor/reflexoterapeut/">Reflexoterapeut</a> <span class="chooser__list__quantity">23</span> </p></li>
+
+                                <li class="li-sty"><p class="chooser__list__item-wrapper"><a class="chooser__list__item-link" href="http://127.0.0.1:8000/doctor/reumatolog/">Reumatolog</a> <span class="chooser__list__quantity">23</span> </p></li>
+
+                                <li class="li-sty"><p class="chooser__list__item-wrapper"><a class="chooser__list__item-link" href="http://127.0.0.1:8000/doctor/sexolog/">Sexolog</a> <span class="chooser__list__quantity">23</span> </p></li>
+
+                                <li class="li-sty"><p class="chooser__list__item-wrapper"><a class="chooser__list__item-link" href="http://127.0.0.1:8000/doctor/specialist-in-masaj/">Specialist în masaj</a> <span class="chooser__list__quantity">23</span> </p></li>
+
+                                <li class="li-sty"><p class="chooser__list__item-wrapper"><a class="chooser__list__item-link" href="http://127.0.0.1:8000/doctor/stomatolog/">Stomatolog</a> <span class="chooser__list__quantity">23</span> </p></li>
+
+                                <li class="li-sty"><p class="chooser__list__item-wrapper"><a class="chooser__list__item-link" href="http://127.0.0.1:8000/doctor/terapeut-manual/">Terapeut manual</a> <span class="chooser__list__quantity">23</span> </p></li>
+
+                                <li class="li-sty"><p class="chooser__list__item-wrapper"><a class="chooser__list__item-link" href="http://127.0.0.1:8000/doctor/triholog/">Triholog</a> <span class="chooser__list__quantity">23</span> </p></li>
+
+                                <li class="li-sty"><p class="chooser__list__item-wrapper"><a class="chooser__list__item-link" href="http://127.0.0.1:8000/doctor/urolog/">Urolog</a> <span class="chooser__list__quantity">23</span> </p></li>
+
+                                <li class="li-sty"><p class="chooser__list__item-wrapper"><a class="chooser__list__item-link" href="http://127.0.0.1:8000/doctor/venerolog/">Venerolog</a> <span class="chooser__list__quantity">23</span> </p></li>
+
+                                <li class="li-sty"><p class="chooser__list__item-wrapper"><a class="chooser__list__item-link" href="http://127.0.0.1:8000/doctor/vertebrolog/">Vertebrolog</a> <span class="chooser__list__quantity">23</span> </p></li>
+
+                                <li class="li-sty"><p class="chooser__list__item-wrapper"><a class="chooser__list__item-link" id="colap" class="btn btn-primary" type="button" data-toggle="collapse" aria-expanded="false" aria-controls="multiCollapseExample1 multiCollapseExample2">More...</a> <span class="chooser__list__quantity">23</span> </p></li>
+
+                            </ul>
+
+                            <!-- End review-container -->
+
+                        </div>
+
+                    </div>
+                    <div style="text-align: center; margin-top: 20px; color: #0957c3; position: relative;" id="loadmore">
+                        <i id="loadmoretext" style="   cursor: pointer;">Load more</i>
+                    </div>	
+					<div style="text-align: center;margin-top: 0px; color: #0957c3; position: relative; " id="loadless">
+						<i id="loadlesstext" style="   cursor: pointer;">Load less</i>
+					</div>
+                    <div style="        padding: 9px">
+
+                    </div>
+					</div>
+                    <div class="list_title">
+
+                        <h3>Caută după serviciu</h3>
+                    </div>
+                    <div>
+						<div style="height: 100%;">
+							<div style="
+    height: 278px;
+    overflow: hidden;
+" id="allinone2">
+								<ul class="diagnostics-record__list">
+									<li class="diagnostics-record__item js-tab__parent-index">
+										<span class="item-title_mobile">ULTRASONOGRAFIE</span>
+										<ul class="diagnostics-record__inner-list js-content-hide" id="place1">
+
+											<li class="diagnostics-record__inner-list__item"><p class="chooser__list__item-wrapper2"><a class="chooser__list__item-link" href="http://127.0.0.1:8000/serviciu/neurosonografia-prin-fontanela/">neurosonografia prin fontanelă </a> <span class="inner-list__quantity">23</span> </p></li>
+
+											<li class="diagnostics-record__inner-list__item"><p class="chooser__list__item-wrapper2"><a class="chooser__list__item-link" href="http://127.0.0.1:8000/serviciu/ecografie-glanda-tiroida/">ecografie glanda tiroidă </a> <span class="inner-list__quantity">23</span> </p></li>
+
+											<li class="diagnostics-record__inner-list__item"><p class="chooser__list__item-wrapper2"><a class="chooser__list__item-link" href="http://127.0.0.1:8000/serviciu/ecografie-abdominala/">ecografie abdominală </a> <span class="inner-list__quantity">23</span> </p></li>
+
+											<li class="diagnostics-record__inner-list__item"><p class="chooser__list__item-wrapper2"><a class="chooser__list__item-link" href="http://127.0.0.1:8000/serviciu/ecografie-sistemul-urinar/">ecografie sistemul urinar </a> <span class="inner-list__quantity">23</span> </p></li>
+
+											<li class="diagnostics-record__inner-list__item"><p class="chooser__list__item-wrapper2"><a class="chooser__list__item-link" href="http://127.0.0.1:8000/serviciu/ecografie-bazinul-mic/">ecografie bazinul mic </a> <span class="inner-list__quantity">23</span> </p></li>
+
+											<li class="diagnostics-record__inner-list__item"><p class="chooser__list__item-wrapper2"><a class="chooser__list__item-link" href="http://127.0.0.1:8000/serviciu/ecografie-complexa/">ecografie complexă </a> <span class="inner-list__quantity">23</span> </p></li>
+											<li class="diagnostics-record__inner-list__item"><p class="chooser__list__item-wrapper2"><a class="chooser__list__item-link" href="http://127.0.0.1:8000/serviciu/ecografie-complexa/">ecografie complexă </a> <span class="inner-list__quantity">23</span> </p></li>
+
+											<li class="diagnostics-record__inner-list__item"><p class="chooser__list__item-wrapper2"><a class="chooser__list__item-link" href="http://127.0.0.1:8000/serviciu/ecografie-complexa/">ecografie complexă </a> <span class="inner-list__quantity">23</span> </p></li>
+
+											<li class="diagnostics-record__inner-list__item"><p class="chooser__list__item-wrapper2"><a class="chooser__list__item-link" href="http://127.0.0.1:8000/serviciu/ecografie-complexa/">ecografie complexă </a> <span class="inner-list__quantity">23</span> </p></li>
+
+											<li class="diagnostics-record__inner-list__item"><p class="chooser__list__item-wrapper2"><a class="chooser__list__item-link" href="http://127.0.0.1:8000/serviciu/ecografie-complexa/">ecografie complexă </a> <span class="inner-list__quantity">23</span> </p></li>
+
+											<li class="diagnostics-record__inner-list__item"><p class="chooser__list__item-wrapper2"><a class="chooser__list__item-link" href="http://127.0.0.1:8000/serviciu/ecografie-complexa/">ecografie complexă </a> <span class="inner-list__quantity">23</span> </p></li>
+
+										</ul>
+
+									</li>
+
+
+
+									<li class="diagnostics-record__item js-tab__parent-index">
+										<span class="item-title_mobile">ULTRASONOGRAFIE2</span>
+										<ul class="diagnostics-record__inner-list js-content-hide" id="place2">
+
+											<li class="diagnostics-record__inner-list__item"><p class="chooser__list__item-wrapper2"><a class="chooser__list__item-link" href="http://127.0.0.1:8000/serviciu/neurosonografia-prin-fontanela/">neurosonografia prin fontanelă </a> <span class="inner-list__quantity">23</span> </p></li>
+
+											<li class="diagnostics-record__inner-list__item"><p class="chooser__list__item-wrapper2"><a class="chooser__list__item-link" href="http://127.0.0.1:8000/serviciu/ecografie-glanda-tiroida/">ecografie glanda tiroidă </a> <span class="inner-list__quantity">23</span> </p></li>
+
+											<li class="diagnostics-record__inner-list__item"><p class="chooser__list__item-wrapper2"><a class="chooser__list__item-link" href="http://127.0.0.1:8000/serviciu/ecografie-abdominala/">ecografie abdominală </a> <span class="inner-list__quantity">23</span> </p></li>
+
+											<li class="diagnostics-record__inner-list__item"><p class="chooser__list__item-wrapper2"><a class="chooser__list__item-link" href="http://127.0.0.1:8000/serviciu/ecografie-sistemul-urinar/">ecografie sistemul urinar </a> <span class="inner-list__quantity">23</span> </p></li>
+
+											<li class="diagnostics-record__inner-list__item"><p class="chooser__list__item-wrapper2"><a class="chooser__list__item-link" href="http://127.0.0.1:8000/serviciu/ecografie-bazinul-mic/">ecografie bazinul mic </a> <span class="inner-list__quantity">23</span> </p></li>
+											<li class="diagnostics-record__inner-list__item"><p class="chooser__list__item-wrapper2"><a class="chooser__list__item-link" href="http://127.0.0.1:8000/serviciu/ecografie-complexa/">ecografie complexă </a> <span class="inner-list__quantity">23</span> </p></li>
+											<li class="diagnostics-record__inner-list__item"><p class="chooser__list__item-wrapper2"><a class="chooser__list__item-link" href="http://127.0.0.1:8000/serviciu/ecografie-complexa/">ecografie complexă </a> <span class="inner-list__quantity">23</span> </p></li>
+											<li class="diagnostics-record__inner-list__item"><p class="chooser__list__item-wrapper2"><a class="chooser__list__item-link" href="http://127.0.0.1:8000/serviciu/ecografie-complexa/">ecografie complexă </a> <span class="inner-list__quantity">23</span> </p></li>
+											<li class="diagnostics-record__inner-list__item"><p class="chooser__list__item-wrapper2"><a class="chooser__list__item-link" href="http://127.0.0.1:8000/serviciu/ecografie-complexa/">ecografie complexă </a> <span class="inner-list__quantity">23</span> </p></li>
+
+										</ul>
+									</li>
+									<li class="diagnostics-record__item js-tab__parent-index">
+										<span class="item-title_mobile">ULTRASONOGRAFIE3</span>
+										<ul class="diagnostics-record__inner-list js-content-hide" id="place3">
+
+											<li class="diagnostics-record__inner-list__item"><p class="chooser__list__item-wrapper2"><a class="chooser__list__item-link" href="http://127.0.0.1:8000/serviciu/neurosonografia-prin-fontanela/">neurosonografia prin fontanelă </a> <span class="inner-list__quantity">23</span> </p></li>
+
+											<li class="diagnostics-record__inner-list__item"><p class="chooser__list__item-wrapper2"><a class="chooser__list__item-link" href="http://127.0.0.1:8000/serviciu/ecografie-glanda-tiroida/">ecografie glanda tiroidă </a> <span class="inner-list__quantity">23</span> </p></li>
+
+											<li class="diagnostics-record__inner-list__item"><p class="chooser__list__item-wrapper2"><a class="chooser__list__item-link" href="http://127.0.0.1:8000/serviciu/ecografie-abdominala/">ecografie abdominală </a> <span class="inner-list__quantity">23</span> </p></li>
+
+											<li class="diagnostics-record__inner-list__item"><p class="chooser__list__item-wrapper2"><a class="chooser__list__item-link" href="http://127.0.0.1:8000/serviciu/ecografie-sistemul-urinar/">ecografie sistemul urinar </a> <span class="inner-list__quantity">23</span> </p></li>
+
+											<li class="diagnostics-record__inner-list__item"><p class="chooser__list__item-wrapper2"><a class="chooser__list__item-link" href="http://127.0.0.1:8000/serviciu/ecografie-bazinul-mic/">ecografie bazinul mic </a> <span class="inner-list__quantity">23</span> </p></li>
+											<li class="diagnostics-record__inner-list__item"><p class="chooser__list__item-wrapper2"><a class="chooser__list__item-link" href="http://127.0.0.1:8000/serviciu/ecografie-complexa/">ecografie complexă </a> <span class="inner-list__quantity">23</span> </p></li>
+											<li class="diagnostics-record__inner-list__item"><p class="chooser__list__item-wrapper2"><a class="chooser__list__item-link" href="http://127.0.0.1:8000/serviciu/ecografie-complexa/">ecografie complexă </a> <span class="inner-list__quantity">23</span> </p></li>
+											<li class="diagnostics-record__inner-list__item"><p class="chooser__list__item-wrapper2"><a class="chooser__list__item-link" href="http://127.0.0.1:8000/serviciu/ecografie-complexa/">ecografie complexă </a> <span class="inner-list__quantity">23</span> </p></li>
+											<li class="diagnostics-record__inner-list__item"><p class="chooser__list__item-wrapper2"><a class="chooser__list__item-link" href="http://127.0.0.1:8000/serviciu/ecografie-complexa/">ecografie complexă </a> <span class="inner-list__quantity">23</span> </p></li>
+											<li class="diagnostics-record__inner-list__item"><p class="chooser__list__item-wrapper2"><a class="chooser__list__item-link" href="http://127.0.0.1:8000/serviciu/ecografie-complexa/">ecografie complexă </a> <span class="inner-list__quantity">23</span> </p></li>
+
+										</ul>
+									</li>
+									 <li id="disnon" class="diagnostics-record__item js-tab__parent-index">
+										<span class="item-title_mobile">ULTRASONOGRAFIE4</span>
+										<ul class="diagnostics-record__inner-list js-content-hide" id="place4">
+
+											<li class="diagnostics-record__inner-list__item"><p class="chooser__list__item-wrapper2"><a class="chooser__list__item-link" href="http://127.0.0.1:8000/serviciu/neurosonografia-prin-fontanela/">neurosonografia prin fontanelă </a> <span class="inner-list__quantity">23</span> </p></li>
+
+											<li class="diagnostics-record__inner-list__item"><p class="chooser__list__item-wrapper2"><a class="chooser__list__item-link" href="http://127.0.0.1:8000/serviciu/ecografie-glanda-tiroida/">ecografie glanda tiroidă </a> <span class="inner-list__quantity">23</span> </p></li>
+
+											<li class="diagnostics-record__inner-list__item"><p class="chooser__list__item-wrapper2"><a class="chooser__list__item-link" href="http://127.0.0.1:8000/serviciu/ecografie-abdominala/">ecografie abdominală </a> <span class="inner-list__quantity">23</span> </p></li>
+
+											<li class="diagnostics-record__inner-list__item"><p class="chooser__list__item-wrapper2"><a class="chooser__list__item-link" href="http://127.0.0.1:8000/serviciu/ecografie-sistemul-urinar/">ecografie sistemul urinar </a> <span class="inner-list__quantity">23</span> </p></li>
+
+											<li class="diagnostics-record__inner-list__item"><p class="chooser__list__item-wrapper2"><a class="chooser__list__item-link" href="http://127.0.0.1:8000/serviciu/ecografie-bazinul-mic/">ecografie bazinul mic </a> <span class="inner-list__quantity">23</span> </p></li>
+											<li class="diagnostics-record__inner-list__item"><p class="chooser__list__item-wrapper2"><a class="chooser__list__item-link" href="http://127.0.0.1:8000/serviciu/ecografie-complexa/">ecografie complexă </a> <span class="inner-list__quantity">23</span> </p></li>
+											<li class="diagnostics-record__inner-list__item"><p class="chooser__list__item-wrapper2"><a class="chooser__list__item-link" href="http://127.0.0.1:8000/serviciu/ecografie-complexa/">ecografie complexă </a> <span class="inner-list__quantity">23</span> </p></li>
+											<li class="diagnostics-record__inner-list__item"><p class="chooser__list__item-wrapper2"><a class="chooser__list__item-link" href="http://127.0.0.1:8000/serviciu/ecografie-complexa/">ecografie complexă </a> <span class="inner-list__quantity">23</span> </p></li>
+											<li class="diagnostics-record__inner-list__item"><p class="chooser__list__item-wrapper2"><a class="chooser__list__item-link" href="http://127.0.0.1:8000/serviciu/ecografie-complexa/">ecografie complexă </a> <span class="inner-list__quantity">23</span> </p></li>
+
+										</ul>
+									</li>
+								</ul>
+							</div>
+							<div style="text-align: center; margin-top: 20px; color: #0957c3; position: relative;" id="loadmore2">
+								<i id="loadmoretext2" style="   cursor: pointer;">Load more</i>
+							</div>
+							<div style="text-align: center;margin-top: 0px; color: #0957c3; position: relative; " id="loadless2">
+								<i id="loadlesstext2" style="   cursor: pointer;">Load less</i>
+							</div>
+							<div style="        padding: 9px">
+
+							</div>
+						</div>
+                    </div>
+
+
+                    <div id="app_section">
+                        <div class="container">
+                            <div class="row justify-content-around">
+                                <div class="col-md-5">
+                                    <p><img src="img/app_img.svg" alt="" class="img-fluid" style="width:100%" height="433"></p>
+                                </div>
+                                <div class="col-md-6">
+                                    <small>Application</small>
+                                    <h3>Download <strong>Findoctor App</strong> Now!</h3>
+                                    <p class="lead">Tota omittantur necessitatibus mei ei. Quo paulo perfecto eu, errem percipit ponderum no eos. Has eu mazim sensibus. Ad nonumes dissentiunt qui, ei menandri electram eos. Nam iisque consequuntur cu.</p>
+                                    <div class="app_buttons wow" data-wow-offset="100">
+                                        <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 43.1 85.9" style="enable-background:new 0 0 43.1 85.9;" xml:space="preserve">
+                                        <path stroke-linecap="round" stroke-linejoin="round" class="st0 draw-arrow" d="M11.3,2.5c-5.8,5-8.7,12.7-9,20.3s2,15.1,5.3,22c6.7,14,18,25.8,31.7,33.1" />
+
+
+
+                                        <path stroke-linecap="round" stroke-linejoin="round" class="draw-arrow tail-1" d="M40.6,78.1C39,71.3,37.2,64.6,35.2,58" />
+
+
+
+                                        <path stroke-linecap="round" stroke-linejoin="round" class="draw-arrow tail-2" d="M39.8,78.5c-7.2,1.7-14.3,3.3-21.5,4.9" />
+
+
+
+						</svg>
+                                        <a href="#0" class="fadeIn"><img src="static/img/apple_app.png" alt="" width="150" height="50" data-retina="true"></a>
+                                        <a href="#0" class="fadeIn"><img src="static/img/google_play_app.png" alt="" width="150" height="50" data-retina="true"></a>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- /row -->
+                        </div>
+                        <!-- /container -->
+                    </div>
+                    <!-- /app_section -->
+</main>
+		<!-- /main content -->
+
+		<footer>
+			<div class="container margin_60_35">
+				<div class="row">
+					<div class="col-lg-3 col-md-12">
+						<p>
+							<a href="index.html" title="Findoctor">
+								<!--                            ENABLE-->
+								<!--                            <img src="/img/logo.png" data-retina="true" alt="" width="163" height="36" class="img-fluid">-->
+							</a>
+						</p>
+					</div>
+					<div class="col-lg-3 col-md-4">
+						<h5>Despre Serviciu</h5>
+						<ul class="links">
+							<li><a href="#0">Despre doc24</a></li>
+							<li><a href="#0">Întrebări și răspunsuri</a></li>
+							<li><a href="#0">Despre rating</a></li>
+							<li><a href="blog.html">Blog</a></li>
+							<li><a href="blog.html">Ghid de boli</a></li>
+							<li><a href="#0">Termini și condiții</a></li>
+							<li><a href="#0">Confidențialitate</a></li>
+
+						</ul>
+					</div>
+					<div class="col-lg-3 col-md-4">
+						<h5>Pentru Utilizători</h5>
+						<ul class="links">
+							<li><a href="#0">Doctori</a></li>
+							<li><a href="#0">Clinici</a></li>
+							<li><a href="#0">Centre de diagnostic</a></li>
+							<li><a href="#0">Laboratoare</a></li>
+							<li><a href="#0">Stomatologii</a></li>
+							<li><a href="#0">Servicii</a></li>
+							<li><a href="login.html">Logare</a></li>
+							<li><a href="register.html">Inregistrare</a></li>
+							<!--                        <li><a href="#0">Join as a Doctor</a></li>-->
+							<!--                        <li><a href="#0">Download App</a></li>-->
+						</ul>
+					</div>
+					<div class="col-lg-3 col-md-4">
+						<h5>Contacte</h5>
+						<ul class="contacts">
+							<li><a href="tel://069274986"><i class="icon_mobile"></i> +373 69274986</a></li>
+							<li>
+								<a href="mailto:info@doc24"><i class="icon_mail_alt"></i> info@doc24</a>
+							</li>
+						</ul>
+						<div class="follow_us">
+							<h5>Follow us</h5>
+							<ul>
+								<li><a href="#0"><i class="social_facebook"></i></a></li>
+								<li><a href="#0"><i class="social_twitter"></i></a></li>
+								<li><a href="#0"><i class="social_linkedin"></i></a></li>
+								<li><a href="#0"><i class="social_instagram"></i></a></li>
+							</ul>
+						</div>
+					</div>
+				</div>
+				<!--/row-->
+				<hr>
+				<!--            <div class="row">-->
+				<!--                <div class="col-md-8">-->
+				<!--                    <ul id="additional_links">-->
+				<!--&lt;!&ndash;                        <li><a href="#0">Termini și condiții</a></li>&ndash;&gt;-->
+				<!--&lt;!&ndash;                        <li><a href="#0">Confidențialitate</a></li>&ndash;&gt;-->
+				<!--                    </ul>-->
+				<!--                </div>-->
+				<!--                <div class="col-md-4">-->
+				<!--                    <div id="copy">©2021 Doc24</div>-->
+				<!--                </div>-->
+				<!--            </div>-->
+				<!--        </div>-->
+		</footer>
+		<!--/footer-->
+	</div>
+	<!-- page -->
+
+	<div id="toTop"></div>
+	<!-- Back to top button -->
+	<!-- COMMON SCRIPTS -->
+	<script src="{% static 'js/jquery-2.2.4.min.js' %}"></script>
+	<script src="{% static 'js/common_scripts.min.js' %}"></script>
+	<script src="{% static 'js/functions.js' %}"></script>
+
+	<script>
+	
+$("#loadmoretext").click(function(){
+
+		 var less = document.getElementById('loadless');
+		var more = document.getElementById('loadmore');
+																// more is click
+			$("#alllink1").css("height","100%");
+			$("#alllinkcontainer1").css("height","100%");
+			more.style.visibility = 'hidden';
+			less.style.visibility = 'visible';
+});
+
+	$("#loadlesstext").click(function(){
+
+		 var less = document.getElementById('loadless');
+		var more = document.getElementById('loadmore');
+ 															// less is click
+    		$("#alllink1").css("height", "249px");
+			$("#alllinkcontainer1").css("height", "322px");
+			more.style.visibility = 'visible';
+			less.style.visibility = 'hidden';
+  });
+
+
+		$("#loadmoretext2").click(function(){
+
+		 var less = document.getElementById('loadless2');
+		var more = document.getElementById('loadmore2');
+			$("#disnon").hide()
+			$(".diagnostics-record__item").css("width", "32%");													// more is click
+		    $("#allinone2").css("height", "100%");
+			more.style.visibility = 'hidden';
+			less.style.visibility = 'visible';
+});
+
+	$("#loadlesstext2").click(function(){
+
+		 var less = document.getElementById('loadless2');
+		var more = document.getElementById('loadmore2');
+ 			$("#disnon").show()
+			$(".diagnostics-record__item").css("width", "24%");													// less is click
+    		$("#allinone2").css("height", "278px");
+			
+			more.style.visibility = 'visible';
+			less.style.visibility = 'hidden';
+  });
+
+		$(window).scroll(function() {
+		let scroll_position = $(window).scrollTop();
+		let offset = $('#sidebar').offset();
+		if(scroll_position > 2700){
+		if(offset.top > 170 && offset.top <= 180){
+		$("#sidebar").offset({ top: offset.top, left: offset.left});
+		}
+		}else{
+		$("#sidebar").offset({ top: 190, left: offset.left});
+		}
+		});
+	</script>
+	<script>
+			$(document).ready(function(){
+		var c = document.getElementById("linkcontainer").childElementCount;
+		
+		if (c <24) {
+		$("#loadmore").css("visibility","hidden");
+			$("#loadless").css("visibility","visible");
+			$("#alllink1").css("height","100%");
+			$("#alllinkcontainer1").css("height","100%");
+		}else{
+	
+			$("#loadmore").css("visibility","visible");
+			$("#loadless").css("visibility","hidden");
+
+		}
+
+			
+		var p1 = document.getElementById("place1").childElementCount;
+		var p2 = document.getElementById("place2").childElementCount;
+		var p3 = document.getElementById("place3").childElementCount;
+		var p4 = document.getElementById("place4").childElementCount;
+		var c2 = (p1 + p2 + p3 + p4);
+	
+		if (c2 <24) {
+		$("#loadmore2").css("visibility","hidden");
+			$("#loadless2").css("visibility","visible");
+			$("#allinone2").css("height","100%");
+		
+		}else{
+	
+			$("#loadmore2").css("visibility","visible");
+			$("#loadless2").css("visibility","hidden");
+
+		}
+
+			});
+	</script>
+</body>
+
+</html>
